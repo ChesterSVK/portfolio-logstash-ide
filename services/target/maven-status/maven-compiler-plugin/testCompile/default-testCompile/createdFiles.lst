@@ -1,0 +1,7 @@
+cz\muni\ics\services\exceptions\ServiceExceptionTest.class
+cz\muni\ics\services\implementation\PathsCollectionTest.class
+cz\muni\ics\services\implementation\bro\BroServiceImplTest.class
+cz\muni\ics\services\implementation\elasticsearch\LogstashCommandDataServiceTest.class
+cz\muni\ics\services\TemporaryTest.class
+cz\muni\ics\services\implementation\elasticsearch\ApplicationDataServiceTest.class
+cz\muni\ics\services\implementations\web\dto\UserDtoTest.class

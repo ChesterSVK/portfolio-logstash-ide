@@ -1,0 +1,6 @@
+<thlogic>
+
+    <!--Variables-->
+    <attr sel="#aboutTitle"
+          th:text="#{page.about}"/>
+</thlogic>

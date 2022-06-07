@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <title id="titleHeader">History</title>
+    <th:block layout:fragment="dynamicStylesheets">
+        <link id="historyLibsMainCss" rel="stylesheet" type="text/css"/>
+        <link id="historyCss" rel="stylesheet" type="text/css"/>
+    </th:block>
+</head>
+<body>
+
+<div class="fragment-content" layout:fragment="pageContent">
+    <div id="historyContainer" class="container fh-container">
+        <div class="row">
+            <div class="col">
+                <table id="configHistoryTable" class="table" data-bind="with: itemsModel">
+                    <thead>
+                    <tr class="table-head-row">
+                        <th scope="col">
+                            <span>
+                                <i class="fas fa-list-ol"></i>
+                            </span>
+                        </th>
+                        <th scope="col">
+                            <span>
+                                <i class="far fa-edit"></i>
+                            </span>
+                        </th>
+                        <th scope="col">
+                            <span>
+                                <i class="far fa-calendar"></i>
+                            </span>
+                        </th>
+                        <th scope="col">
+                            <span>
+                                <i class="far fa-question-circle"></i>
+                            </span>
+                        </th>
+                        <!--<th scope="col">-->
+                            <!--<span>-->
+                                <!--<i class="fas fa-file-export"></i>-->
+                            <!--</span>-->
+                        <!--</th>-->
+                        <th scope="col">
+                            <span>
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: configurations">
+                        <tr>
+                            <th scope="row" data-bind="text: $index"></th>
+                            <td data-bind="text: $data.figureNote"></td>
+                            <td data-bind="text: $data.dateCreated"></td>
+                            <td data-bind="text: $data.type"></td>
+                            <!--<td>-->
+                                <!--<span>-->
+                                    <!--<button class="btn btn-sm btn-info" data-bind="click: $parent.exportLogstashCommand">-->
+                                        <!--<i class="fas fa-file-export"></i>-->
+                                    <!--</button>-->
+                                <!--</span>-->
+                            <!--</td>-->
+                            <td>
+                                <span>
+                                    <button class="btn btn-sm btn-info" data-bind="click: $parent.deleteConfig">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<footer>
+    <th:block layout:fragment="dynamicScripts">
+        <script id="historyLibsMainJs" type="text/javascript"></script>
+        <script id="historyJs" type="text/javascript"></script>
+        <script id="historyInitJs" type="text/javascript"></script>
+    </th:block>
+</footer>
+</html>

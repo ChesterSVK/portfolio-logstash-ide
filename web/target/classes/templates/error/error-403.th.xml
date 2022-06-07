@@ -1,0 +1,15 @@
+<thlogic>
+    <!--Variables-->
+
+    <attr sel="#reasonPage"
+          th:text="${request.getAttribute('javax.servlet.error.request_uri')}"/>
+    <attr sel="#reasonHeading"
+          th:text="#{page.error.denied}"/>
+
+    <attr sel="#homeBtn"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).HOME}__}"/>
+
+    <attr sel="#linkText"
+          th:text="#{page.home}"/>
+
+</thlogic>

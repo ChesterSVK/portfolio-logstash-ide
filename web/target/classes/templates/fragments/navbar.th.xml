@@ -1,0 +1,67 @@
+<thlogic>
+    <!--Navbar-->
+    <attr sel="#appNavBar"
+          th:fragment="navBarFragment"/>
+
+    <attr sel="#linkLogo"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).HOME}__}"/>
+
+    <!--HomeBtn-->
+    <attr sel="#linkHomeItem"
+          th:classappend="(${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).HOME}__') ? 'active' : '' "/>
+    <attr sel="#linkHome"
+          th:text="#{page.home}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).HOME}__}"
+          th:classappend="( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).HOME}__' ? 'disabled' : '')"/>
+
+    <!--ImportBtn-->
+    <attr sel="#linkImportItem"
+          th:classappend="(${#httpServletRequest.requestURI.toString().startsWith('__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}__')} ) ? 'active' : '' "/>
+    <attr sel="#linkImport"
+          th:text="#{page.import}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT_START}__}"
+          th:classappend="( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT_START}__' ? 'disabled' : '')"/>
+
+    <!--FilemanagerBtn-->
+    <attr sel="#linkFilemanagerItem"
+          th:classappend="(${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).FILEMANAGER}__') ? 'active' : '' "/>
+    <attr sel="#linkFilemanager"
+          th:text="#{page.filemanager}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).FILEMANAGER}__}"
+          th:classappend="( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).FILEMANAGER}__' ? 'disabled' : '')"/>
+
+    <!--HistoryBtn-->
+    <attr sel="#linkHistoryItem"
+          th:classappend="(${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).HISTORY}__') ? 'active' : '' "/>
+    <attr sel="#linkHistory"
+          th:text="#{page.history}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).HISTORY}__}"
+          th:classappend="( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).HISTORY}__' ? 'disabled' : '')"/>
+
+    <attr sel="#containerText"
+          th:if="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getContainerId().isEmpty() == false}"
+          th:text="#{navbar.container}"/>
+    <attr sel="#containerID"
+          th:if="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getContainerId().isEmpty() == false}"
+          th:text="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getContainerId()}"/>
+    <attr sel="#navbarDropdownMenuLink"
+          th:text="#{page.tools}"/>
+    <attr sel="#kibanaLink"
+          th:if="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getKibanaPort().isEmpty() == false}"
+          th:href="${'http://' + #httpServletRequest.getServerName().toString() + ':' + T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getKibanaPort()}"/>
+          <!--th:href="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getKibanaLink()}"/>-->
+    <attr sel="#esHealthStatus"
+          th:classappend="badge-info"
+          th:text="${esHealth.getStatus().getCode()}"/>
+    <attr sel="#esPort"
+          th:classappend="badge-info"
+          th:text="${esPort}"/>
+    <attr sel="#esClusterName"
+          th:classappend="badge-info"
+          th:text="${esClusterName}"/>
+    <attr sel="#closeModalBtn"
+          th:text="#{navbar.es.close}"/>
+
+    <attr sel="#clusterText"
+          th:text="#{navbar.cluster}"/>
+</thlogic>

@@ -1,0 +1,5 @@
+<thlogic>
+    <attr sel="#fileManager"
+          th:fragment="fileManagerSimpleFragment"/>
+
+</thlogic>

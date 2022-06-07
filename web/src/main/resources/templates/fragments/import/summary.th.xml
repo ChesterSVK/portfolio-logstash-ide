@@ -1,0 +1,58 @@
+<thlogic>
+    <attr sel="#importSummary"
+          th:fragment="summaryFragment"/>
+
+    <attr sel="#discontinueBtn"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).TRANSFORM_LINK}__}">
+        <attr sel="#discontinueBtnText"
+              th:text="#{page.summary.back}"/>
+    </attr>
+
+    <attr sel="#continueBtn">
+        <attr sel="#continueBtnText"
+              th:text="#{page.summary.upload}"/>
+    </attr>
+
+    <attr sel="#ESLogo"
+    th:src="@{/img/summary/elastic-elasticsearch-logo-png-transparent.png}"/>
+
+    <attr sel="#summaryForm"
+          th:method="post"
+          th:object="${applicationDataDto}"
+          th:action="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).UPLOAD_TO_ES_LINK}__}">
+        <attr sel="#typeInput" th:field="*{type}" th:value="${convertType}"/>
+        <attr sel="#noteInput" th:field="*{figureNote}" th:placeholder="#{page.summary.note}"/>
+        <attr sel="#saveConfig" th:field="*{saveLogstashConfig}"/>
+        <attr sel="#watchFoldersCheck" th:field="*{watchFolders}"/>
+    </attr>
+
+    <attr sel="#filesPickedText"
+          th:text="#{page.summary.files.picked}"/>
+    <attr sel="#filesPickedNumber"
+          th:text="${pickedFilesList.size()}"/>
+    <attr sel="#pickFilesList" th:if="${pickedFilesList.size() > 0}">
+        <attr sel="li.item-path" th:text="${path}" th:each="path : ${pickedFilesList}" />
+    </attr>
+    <attr sel="#noteLabel"
+          th:text="#{page.summary.note}"/>
+    <attr sel="#convertTypeText"
+          th:text="#{page.summary.convert.type}"/>
+    <attr sel="#convertTypeType"
+          th:text="${convertType}"/>
+    <attr sel="#logstashTransformationsText"
+          th:text="#{page.summary.logstash.functions}"/>
+    <attr sel="#functionsJson"
+          th:text="${transformationsJson}"/>
+    <attr sel="#saveFunctionsLabel"
+          th:text="#{page.summary.logstash.save}"/>
+    <attr sel="#watchFoldersText"
+          th:text="#{page.summary.watch.folders}"/>
+    <attr sel="#watchFoldersCheckLabel"
+          th:text="#{page.summary.watch.execute}"/>
+    <attr sel="#watchFoldersNumber"
+          th:text="${watchFoldersList.size()}"/>
+    <attr sel="#watchFilesList" th:if="${watchFoldersList.size() > 0}">
+        <attr sel="li.item-path" th:text="${path}" th:each="path : ${watchFoldersList}" />
+    </attr>
+
+</thlogic>

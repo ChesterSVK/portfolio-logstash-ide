@@ -1,0 +1,169 @@
+#!/bin/sh
+# Init script for neck
+# Maintained by Tom Rebok
+#
+### BEGIN INIT INFO
+# Provides:          neck
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: 
+# Description:       Neck
+### END INIT INFO
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+export PATH
+
+name=neck
+neck_directory="/opt/neck"
+program_bin="${neck_directory}/web/target/NeckWAR.jar"
+args=
+
+[ -r /etc/default/$name ] && . /etc/default/$name
+[ -r /etc/sysconfig/$name ] && . /etc/sysconfig/$name
+
+[ -z "$nice" ] && nice=0
+
+trace() {
+  logger -t "/etc/init.d/neck" "$@"
+}
+
+emit() {
+  trace "$@"
+  echo "$@"
+}
+
+build() {
+	# if not built previously, build the Neck now 
+	if ! [ -f "$program_bin" ]; then
+		# we have to build the JAR file using MAVEN
+		cd "$neck_directory"
+		if set | grep -q -i copas ; then 
+			# CopAS build
+			mvn clean install  -Dspring.profiles.active=dev-debug,dev-info  -Dmodule.logging.level=DEBUG  -Dstartup.initialization=true  -Dbro.binary.path=/usr/local/zeek/bin/zeek  -Dservices.root.output.directory.home=/home/application-workspace  -Dcopas.watchdog.script.path=/opt/CopAS/bin/copas-watchdog  -Dlogstash.binary.path=/usr/share/logstash/bin/logstash  -Delasticsearch.home=/usr/share/elasticsearch/bin/elasticsearch  -Delasticsearch.port=9300  -Delasticsearch.cluster=elasticsearch -DskipTests=true
+		else
+			# common build
+			mvn clean install -DskipTests=true
+		fi
+		if [ $? -ne 0 ]; then
+			echo "ERROR: Building the JAR file failed."
+			exit 1
+		fi
+	fi
+}
+
+start() {
+
+	# do some cleaning?
+	# what about logs?
+	
+	build
+	
+	# Start the server
+	exec $program_bin $args &
+	if [ $? -ne 0 ]; then
+		echo "ERROR: Error occurred while starting the server."
+		exit 1
+	fi
+
+	emit "$name started"
+	return 0
+}
+
+stop() {
+  # Try a few times to kill TERM the program
+  if status ; then
+    pid=$(ps auxww | grep -- "$program_bin" | grep -v grep | awk '{print $2;}' | tr '\n' ' ')
+    trace "Killing $name (pid $pid) with SIGTERM"
+    kill -TERM $pid
+    # Wait for it to exit.
+    for i in 1 2 3 4 5 ; do
+      trace "Waiting $name (pid $pid) to die..."
+      status || break
+      sleep 1
+    done
+    if status ; then
+      if [ "$KILL_ON_STOP_TIMEOUT" -eq 1 ] ; then
+        trace "Timeout reached. Killing $name (pid $pid) with SIGKILL.  This may result in data loss."
+        kill -KILL $pid
+        emit "$name killed with SIGKILL."
+      else
+        emit "$name stop failed; still running."
+      fi
+    else
+      emit "$name stopped."
+    fi
+  fi
+}
+
+status() {
+  pid=$(ps auxww | grep -- "$program_bin" | grep -v grep | awk '{print $2;}' | tr '\n' ' ')
+  if [ -n "$pid" ] ; then
+  	return 0
+  else
+  	return 3 # program is not running
+  fi
+}
+
+force_stop() {
+  if status ; then
+    stop
+    pid=$(ps auxww | grep -- "$program_bin" | grep -v grep | awk '{print $2;}' | tr '\n' ' ')
+    status && kill -KILL $pid
+  fi
+}
+
+
+case "$1" in
+  force-start|start|stop|force-stop|build|force-build|restart)
+    trace "Attempting '$1' on $name"
+    ;;
+esac
+
+case "$1" in
+  force-start)
+    exec "$0" start
+    ;;
+  start)
+    status
+    code=$?
+    if [ $code -eq 0 ]; then
+      emit "$name is already running"
+      exit $code
+    else
+      start
+      exit $?
+    fi
+    ;;
+  stop) stop ;;
+  force-stop) force_stop ;;
+  build)
+  	build
+	exit $?
+	;;
+  force-build)
+	rm -f "${program_bin}"
+	build
+	exit $?
+	;;
+  status)
+    status
+    code=$?
+    if [ $code -eq 0 ] ; then
+      emit "$name is running"
+    else
+      emit "$name is not running"
+    fi
+    exit $code
+    ;;
+  restart)
+    stop && start
+    ;;
+  *)
+    echo "Usage: $SCRIPTNAME {start|force-start|stop|force-stop|build|force-build|status|restart}" >&2
+    exit 3
+  ;;
+esac
+
+exit $?

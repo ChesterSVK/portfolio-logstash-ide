@@ -1,0 +1,12 @@
+<thlogic>
+    <!--Variables-->
+
+    <attr sel="#reasonHeading"
+          th:text="#{page.error.occurred}"/>
+
+    <attr sel="#homeBtn"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).HOME}__}"/>
+    <attr sel="#linkText"
+          th:text="#{page.home}"/>
+
+</thlogic>

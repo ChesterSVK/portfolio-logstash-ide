@@ -1,0 +1,48 @@
+/**
+* Icons are from:
+* http://icomoon.io/app/
+* http://www.iconarchive.com/show/ios7-icons-by-icons8.html
+* http://www.iconarchive.com/show/windows-8-icons-by-icons8.html
+**/
+
+html, body {
+    height: 100%;
+}
+
+/* IE10-11 styles */
+html[data-useragent*='MSIE 10.0'] .fm-container .fm-header button,
+html[data-useragent*='MSIE 11.0'] .fm-container .fm-header button {
+    vertical-align: top;
+}
+
+.fh-container * {
+    font-family: inherit;
+    box-sizing: content-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: content-box;
+}
+
+.fh-container {
+    padding: 3rem;
+    overflow: hidden;
+}
+
+.fh-container #configHistoryTable {
+    background-color: #fff;
+}
+.fh-container #configHistoryTable th,
+.fh-container #configHistoryTable td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.fh-container #configHistoryTable tbody tr:hover{
+    background-color: rgba(30, 219, 248, 0.1);
+}
+.fh-container #configHistoryTable tbody td:hover{
+    background-color: rgba(27, 199, 225, 0.18);
+}
+.fh-container #configHistoryTable .table-head-row {
+    background-color: #17a2b8;
+}

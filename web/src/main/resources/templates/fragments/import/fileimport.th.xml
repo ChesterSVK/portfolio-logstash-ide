@@ -1,0 +1,10 @@
+<thlogic>
+
+    <attr sel="#tokenInput"
+          th:name="${_csrf.parameterName}"
+          th:value="${_csrf.token}" />
+
+    <attr sel="#fileImport"
+          th:fragment="fileImportFragment"/>
+
+</thlogic>

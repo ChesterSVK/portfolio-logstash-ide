@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title id="appTitle" layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Base</title>
+    <meta name="description" content=""/>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta th:name="langCode" th:content="${langCode}"/>
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <link id="pageIcon1" rel="SHORTCUT ICON" type="image/x-icon" />
+    <link id="pageIcon2" rel="ICON" type="image/ico" />
+    <!--Bootstrap -->
+    <link id="bootstrapCss" rel="stylesheet" type="text/css"/>
+    <link id="resetCss" rel="stylesheet" type="text/css"/>
+    <link id="applicationCss" rel="stylesheet" type="text/css"/>
+    <link id="koGridCss" rel="stylesheet" type="text/css"/>
+
+    <!--Dynamic Links-->
+    <th:block layout:fragment="dynamicStylesheets">
+    </th:block>
+</head>
+
+<body id="neckPluginContainer">
+<nav id="appNavBar">
+</nav>
+<div id="appFlashMessages">
+</div>
+<main id="appContent">
+    <div id="app-loading-wrap"><!-- loading wrapper / removed when loaded --></div>
+    <th:block layout:fragment="pageContent">
+    </th:block>
+</main>
+<footer>
+    <section id="appFooter" th:replace="~{fragments/footer :: footerFragment(loggedIn=${(#authorization.expression('isAuthenticated()'))})}">
+    </section>
+    <!--Bootstrap Online-->
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+    <!--integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"-->
+    <!--integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"-->
+    <!--integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"-->
+    <!--crossorigin="anonymous"></script>-->
+
+    <!--Bootstrap Local-->
+    <script id="bootstrapJQueryJs" type="text/javascript"></script>
+    <script id="bootstrapPopperJs" type="text/javascript"></script>
+    <script id="bootstrapJs" type="text/javascript"></script>
+    <!--Font Awesome-->
+    <script id="fontAwesomeJs" type="text/javascript" defer></script>
+    <!--Knockout-->
+    <script id="knockoutJs" type="text/javascript"></script>
+    <!--KoGrid-->
+    <script id="koGridJs" type="text/javascript"></script>
+
+    <!--Dynamic scripts -->
+    <th:block layout:fragment="dynamicScripts">
+    </th:block>
+
+    <!--App scripts at the end-->
+    <script id="applicationJs" type="text/javascript"></script>
+</footer>
+</body><!-- /.container-fluid -->
+
+</html>

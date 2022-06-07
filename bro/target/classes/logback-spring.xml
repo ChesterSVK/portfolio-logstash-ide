@@ -1,0 +1,38 @@
+<configuration debug="false">
+
+    <!--Includes-->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <!--Properties-->
+    <property name="MODULE_HOME" value="bro"/>
+    <property name="CHARSET" value="UTF-8"/>
+    <!--Appender-->
+    <appender name="FILE_DEV_INFO" class="ch.qos.logback.core.FileAppender">
+        <file>logs/${MODULE_HOME}/${MODULE_HOME}.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n
+            </pattern>
+            <charset>${CHARSET}</charset>
+        </encoder>
+    </appender>
+    <appender name="FILE_DEV_DEBUG" class="ch.qos.logback.core.FileAppender">
+        <file>logs/${MODULE_HOME}/${MODULE_HOME}-debug.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n %caller{1}
+            </pattern>
+            <charset>${CHARSET}</charset>
+        </encoder>
+    </appender>
+    <!--Profiles-->
+    <springProfile name="dev-info">
+        <root level="INFO">
+            <appender-ref ref="FILE_DEV_INFO"/>
+        </root>
+    </springProfile>
+    <springProfile name="dev-debug">
+        <root level="DEBUG">
+            <appender-ref ref="FILE_DEV_DEBUG"/>
+        </root>
+    </springProfile>
+</configuration>

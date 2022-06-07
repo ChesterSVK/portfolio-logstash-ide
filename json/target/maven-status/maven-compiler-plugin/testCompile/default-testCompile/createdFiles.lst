@@ -1,0 +1,6 @@
+cz\muni\ics\json\TestJsonClass.class
+cz\muni\ics\json\exceptions\JsonExceptionTest.class
+cz\muni\ics\json\utils\JsonMapperTest.class
+cz\muni\ics\json\utils\JsonParserTest.class
+cz\muni\ics\json\service\JsonServiceTest.class
+cz\muni\ics\json\JsonTestPreparator.class

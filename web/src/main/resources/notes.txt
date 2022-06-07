@@ -1,0 +1,2 @@
+whitespaces in pom properties not working
+thymleaf fragments are inovking controller method n (number of fragments invoked) times

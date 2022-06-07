@@ -1,0 +1,32 @@
+<thlogic>
+    <attr sel="#appFlashMessages"
+          th:fragment="flashMessagesFragment"/>
+
+    <!--Localisation-->
+    <attr sel="#infoText"
+          th:text="#{flashes.info}"/>
+    <attr sel="#successText"
+          th:text="#{flashes.success}"/>
+    <attr sel="#warningText"
+          th:text="#{flashes.warning}"/>
+    <attr sel="#dangerText"
+          th:text="#{flashes.danger}"/>
+
+    <attr sel="#alertInfo"
+          th:style="( ${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_INFO}__} != null ) ? 'display:block' : ''"/>
+    <attr sel="#alertSuccess"
+          th:style="( ${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_SUCC}__} != null ) ? 'display:block' : ''"/>
+    <attr sel="#alertWarning"
+          th:style="( ${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_WARN}__} != null ) ? 'display:block' : ''"/>
+    <attr sel="#alertDanger"
+          th:style="( ${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_ERRO}__} != null ) ? 'display:block' : ''"/>
+
+    <attr sel="#alertInfoValue"
+          th:text="(${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_INFO}__} != null) ? ${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_INFO}__} : ''"/>
+    <attr sel="#alertSuccessValue"
+          th:text="(${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_SUCC}__} != null) ? ${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_SUCC}__} : ''"/>
+    <attr sel="#alertWarningValue"
+          th:text="(${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_WARN}__} != null) ? ${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_WARN}__} : ''"/>
+    <attr sel="#alertDangerValue"
+          th:text="(${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_ERRO}__} != null) ? ${__${T(cz.muni.ics.web.utils.ViewAttributes).ALERT_ERRO}__} : ''"/>
+</thlogic>

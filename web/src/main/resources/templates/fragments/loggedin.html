@@ -1,0 +1,12 @@
+<div id="appLoggedIn">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                Logged user: <span sec:authentication="name"></span> |
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

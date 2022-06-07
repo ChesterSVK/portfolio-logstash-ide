@@ -1,0 +1,6 @@
+cz\muni\ics\core\TemporaryTest.class
+cz\muni\ics\core\dataclasses\ExecutorDataValidatorTest.class
+cz\muni\ics\core\os\SystemCommanderComponentTest.class
+cz\muni\ics\core\exceptions\CoreValidationExceptionTest.class
+cz\muni\ics\core\CoreAppTest.class
+cz\muni\ics\core\exceptions\ApplicationExceptionTest.class

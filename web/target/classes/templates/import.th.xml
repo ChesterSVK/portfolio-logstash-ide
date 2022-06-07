@@ -1,0 +1,100 @@
+<thlogic>
+
+    <!--CSS-->
+    <!--Filemanager-->
+    <attr sel="#filemanagerCss"
+          th:if="${importState == 1}"
+          th:href="@{/plug-in/filemanager/src/css/filemanager.css}"/>
+    <attr sel="#filemanagerLibsMainCss"
+          th:if="${importState == 1}"
+          th:href="@{/libs/libs-main/src/css/libs-main.css}"/>
+    <!--Fileimport-->
+    <attr sel="#fileImportCss"
+          th:if="${importState == 1}"
+          th:href="@{/plug-in/fileimport/src/css/fileimport.css}"/>
+    <!--FileConvert-->
+    <attr sel="#fileConvertCss"
+          th:if="${importState == 2}"
+          th:href="@{/plug-in/fileconvert/src/css/fileconvert.css}"/>
+    <!--FileTransform-->
+    <attr sel="#fileTransformCss"
+          th:if="${importState == 3}"
+          th:href="@{/plug-in/filetransform/src/css/filetransform.css}"/>
+
+
+    <!--JS-->
+    <!--Filemanager-->
+    <attr sel="#filemanagerLibsMainJs"
+          th:if="${importState == 1}"
+          th:src="@{/libs/libs-main/src/js/libs-main.js}"/>
+    <attr sel="#filemanagerJs"
+          th:if="${importState == 1}"
+          th:src="@{/plug-in/filemanager/src/js/filemanager.js}"/>
+    <attr sel="#filemanagerInitJs"
+          th:if="${importState == 1}"
+          th:src="@{/plug-in/filemanager/config/filemanager.init.js}"/>
+    <!--FileImport-->
+    <attr sel="#fileImportJs"
+          th:if="${importState == 1}"
+          th:src="@{/plug-in/fileimport/src/js/fileimport.js}"/>
+    <attr sel="#fileImportInitJs"
+          th:if="${importState == 1}"
+          th:src="@{/plug-in/fileimport/config/fileimport.init.js}"/>
+    <!--FileConvert-->
+    <attr sel="#fileConvertJs"
+          th:if="${importState == 2}"
+          th:src="@{/plug-in/fileconvert/src/js/fileconvert.js}"/>
+    <attr sel="#fileConvertInitJs"
+          th:if="${importState == 2}"
+          th:src="@{/plug-in/fileconvert/config/fileconvert.init.js}"/>
+    <!--FileConvert-->
+    <attr sel="#fileTransformJs"
+          th:if="${importState == 3}"
+          th:src="@{/plug-in/filetransform/src/js/filetransform.js}"/>
+    <attr sel="#fileTransformInitJs"
+          th:if="${importState == 3}"
+          th:src="@{/plug-in/filetransform/config/filetransform.init.js}"/>
+
+
+    <attr sel="#importIntroParent"
+          th:if="${importState == 0}">
+        <attr sel="#importStart"
+              th:replace="~{fragments/import/import-intro :: importStartFragment}"/>
+    </attr>
+
+    <attr sel="#importFilePickerParent"
+          th:if="${importState == 1}">
+        <attr sel="#importFileManagerSimple"
+              th:replace="~{fragments/import/filemanager-simple :: fileManagerSimpleFragment}"/>
+        <attr sel="#fileImport"
+              th:replace="~{fragments/import/fileimport :: fileImportFragment}"/>
+    </attr>
+
+    <attr sel="#importConvertParent"
+          th:if="${importState == 2}">
+        <attr sel="#importConverter"
+        th:replace="~{fragments/import/general-converter :: general-converter}"/>
+              <!--th:if="${fragmentName != null}"-->
+              <!--th:replace="~{fragments/import/__${fragmentName}__ :: __${fragmentName}__}"/>-->
+    </attr>
+
+    <attr sel="#importTransformParent"
+          th:if="${importState == 3}">
+        <attr sel="#importTransformer"
+              th:replace="~{fragments/import/transformer :: transformerFragment}"/>
+    </attr>
+
+    <attr sel="#importSummaryParent"
+          th:if="${importState == 4}">
+        <attr sel="#importSummary"
+              th:replace="~{fragments/import/summary :: summaryFragment}"/>
+    </attr>
+
+
+    <!--Variables-->
+    <attr sel="#titleHeader"
+          th:text="#{page.import}"/>
+
+    <attr sel="#appNavBreadcrumbs"
+          th:replace="~{fragments/import/breadcrumbs :: navBreadcrumbsFragment}"/>
+</thlogic>

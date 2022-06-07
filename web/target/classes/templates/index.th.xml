@@ -1,0 +1,16 @@
+<thlogic>
+    <!--Variables-->
+    <attr sel="#text1"
+          th:text="#{page.home.text.part.1}"/>
+
+    <attr sel="#text2"
+          th:text="#{page.home.text.part.2}"/>
+
+    <attr sel="#mainHeader"
+          th:text="#{page.home.main.header}"/>
+
+    <attr sel="#importBtn"
+          th:text="#{page.import}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT_START}__}"/>
+
+</thlogic>

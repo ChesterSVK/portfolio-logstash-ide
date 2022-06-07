@@ -1,0 +1,1 @@
+Email validation fails on this email pattern "email@test".

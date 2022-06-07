@@ -1,0 +1,20 @@
+{
+    "language": {
+        "default": "en",
+        "available": ["cs", "en"]
+    },
+    "formatter": {
+        "datetime": {
+            "skeleton": "yMMMdHm"
+        }
+    },
+    "api": {
+        "lang": "java",
+        "connectorUrl": "/import/convert/api",
+        "requestParams": {
+            "GET": {},
+            "POST": {},
+            "MIXED": {}
+        }
+    }
+}

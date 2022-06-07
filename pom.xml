@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cz.muni.ics</groupId>
+    <artifactId>Neck_Web_Application</artifactId>
+    <version>3.0</version>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <modules>
+        <module>core</module>
+        <module>web</module>
+        <module>logstash</module>
+        <module>elasticsearch</module>
+        <module>services</module>
+        <module>filesystem</module>
+        <module>json</module>
+        <module>bro</module>
+        <module>watchdog</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <!--Properties-->
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.version>3.7.0</maven.compiler.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <license.licenseName>apache_v2</license.licenseName>
+
+        <spring.profiles.active>dev-info</spring.profiles.active>
+        <module.logging.level>INFO</module.logging.level>
+        <spring.logging.level>INFO</spring.logging.level>
+        <root.logging.level>INFO</root.logging.level>
+        <thymleaf.logging.level>INFO</thymleaf.logging.level>
+        <startup.initialization>false</startup.initialization>
+        <services.root.output.directory.home>./application-workspace</services.root.output.directory.home>
+    </properties>
+
+
+    <!-- Project Information -->
+    <name>Neck Project</name>
+    <description>Application interface for CopAS analytics tool</description>
+    <inceptionYear>2018</inceptionYear>
+    <licenses>
+        <license>
+            <name>Apache 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <organization>
+        <name>
+            Masaryk University, Institute of Computer Science
+        </name>
+        <url>
+            https://www.ics.muni.cz/
+        </url>
+    </organization>
+    <developers>
+        <developer>
+            <name>
+                Bc. Jozef Cibík
+            </name>
+            <email>
+                jozefcibik@gmail.com
+            </email>
+        </developer>
+        <developer>
+            <name>
+                RNDr. Tomáš Rebok, Ph.D.
+            </name>
+            <email>
+                rebok@ics.muni.cz
+            </email>
+        </developer>
+    </developers>
+
+
+    <!-- Build Settings -->
+    <build>
+        <finalName>NeckWAR</finalName>
+        <plugins>
+
+            <!--Compiler Plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <compilerArguments>
+                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            <!--..................................................................Add remove logs step to clean phase-->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/logs</directory>
+                            <directory>${services.root.output.directory.home}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.22.0</version>
+                <configuration>
+                    <outputDirectory>${basedir}/target/testsite</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <!--Dependecies-->
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- .......................................................................................................... Annotations -->
+
+            <!-- ................................................................................................ Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.2</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.25</version>
+            </dependency>
+
+            <!-- ............................................................................................ Spring -->
+            <dependency>
+                <groupId>org.codelibs.elasticsearch.module</groupId>
+                <artifactId>transport-netty3</artifactId>
+                <version>5.1.1</version>
+            </dependency>
+
+            <!-- ........................................................................................... Jackson -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.9.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.9.4</version>
+            </dependency>
+
+            <!-- ........................................................................................... Commons -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.7</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-exec</artifactId>
+                <version>1.3</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.2</version>
+            </dependency>
+
+
+            <!-- ........................................................................................... Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- ...................................................................................................... Logging -->
+
+            <!-- ...................................................................................................... General -->
+
+            <!-- ........................................................................................... Commons -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.6</version>
+            </dependency>
+
+            <!-- ...................................................................................................... Validation -->
+
+            <!-- ......................................................................................... Hibernate -->
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>6.0.11.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator-annotation-processor</artifactId>
+                <version>6.0.11.Final</version>
+            </dependency>
+
+            <!-- ......................................................................................... Glassfish -->
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>3.0.1-b09</version>
+            </dependency>
+
+            <!-- ........................................................................................ ImageScalr -->
+            <dependency>
+                <groupId>org.imgscalr</groupId>
+                <artifactId>imgscalr-lib</artifactId>
+                <version>4.2</version>
+            </dependency>
+
+            <!-- .............................................................................................. Gson -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.5</version>
+            </dependency>
+
+
+            <!-- ........................................................................................ FileUpload -->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.3.1</version>
+            </dependency>
+
+            <!-- ........................................................................................... ImageIO -->
+            <dependency>
+                <groupId>com.twelvemonkeys.imageio</groupId>
+                <artifactId>imageio-jpeg</artifactId>
+                <version>3.3.2</version>
+            </dependency>
+
+
+            <!-- ...................................................................................................... Testing -->
+            <!-- ............................................................................................. Zohak -->
+            <dependency>
+                <groupId>com.googlecode.zohhak</groupId>
+                <artifactId>zohhak</artifactId>
+                <version>1.1.1</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- ........................................................................................... AssertJ -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.10.0</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- ............................................................................................ TestNG -->
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.13.1</version>
+            </dependency>
+
+            <!-- ........................................................................................... Mockito -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>2.0.2-beta</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- ............................................................................................. JUnit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

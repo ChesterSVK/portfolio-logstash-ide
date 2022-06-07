@@ -1,0 +1,4 @@
+<thlogic>
+    <attr sel="#appLoggedIn"
+          th:fragment="loggedInFragment"/>
+</thlogic>

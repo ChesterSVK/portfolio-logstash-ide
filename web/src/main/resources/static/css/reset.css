@@ -1,0 +1,35 @@
+body{
+    font-size: 16px;
+}
+
+p {
+    margin: .1em;
+}
+
+.breadcrumb{
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+a:hover,
+a:focus,
+a:active{
+    text-decoration: none;
+}
+
+.btn.focus, .btn:focus{
+    outline: 0;
+    box-shadow: none;
+}
+
+textarea{
+    resize: none;
+    font-family: "Consolas", monospace;
+}
+
+.btn-info:not(:disabled):not(.disabled).active:focus, .btn-info:not(:disabled):not(.disabled):active:focus, .show>.btn-info.dropdown-toggle:focus{
+    box-shadow: none;
+}
+
+
+

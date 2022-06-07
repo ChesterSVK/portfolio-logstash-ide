@@ -1,0 +1,43 @@
+<thlogic>
+    <attr sel="#progressTitle"
+          th:text="#{page.import.progress}"/>
+
+    <attr sel="#pickFilesTitle"
+          th:text="#{page.import.pick}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).PICK_FILES_LINK}__}"
+          th:classappend="( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).PICK_FILES_LINK}__' ? 'disabled' : '')"/>
+
+    <attr sel="#convertTitle"
+          th:text="#{page.import.convert}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).CONVERT_LINK}__}"
+          th:classappend="( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).CONVERT_LINK}__' ? 'disabled' : '')"/>
+
+    <attr sel="#transformTitle"
+          th:text="#{page.import.transform}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).TRANSFORM_LINK}__}"
+          th:classappend="( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).TRANSFORM_LINK}__' ? 'disabled' : '')"/>
+
+    <attr sel="#summaryTitle"
+          th:text="#{page.import.summary}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).SUMMARY_LINK}__}"
+          th:classappend="( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).SUMMARY_LINK}__' ? 'disabled' : '')"/>
+
+    <attr sel="#appNavBreadcrumbs"
+          th:fragment="navBreadcrumbsFragment"/>
+
+
+    <attr sel="#breadcrumbItem1"
+          th:classappend="( ${importState} >= 1  ? '' : 'hidden' ) + ' ' +
+            ( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).PICK_FILES_LINK}__' ? 'active' : '')"/>
+    <attr sel="#breadcrumbItem2"
+          th:classappend="( ${importState} >= 2  ? '' : 'hidden' ) + ' ' +
+            ( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).CONVERT_LINK}__' ? 'active' : '') "/>
+    <attr sel="#breadcrumbItem3"
+          th:classappend="( ${importState} >= 3  ? '' : 'hidden' ) + ' ' +
+            ( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).TRANSFORM_LINK}__' ? 'active' : '') "/>
+    <attr sel="#breadcrumbItem4"
+          th:classappend="( ${importState} >= 4  ? '' : 'hidden' ) + ' ' +
+            ( ${#httpServletRequest.requestURI} == '__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).SUMMARY_LINK}__' ? 'active' : '') "/>
+
+
+</thlogic>

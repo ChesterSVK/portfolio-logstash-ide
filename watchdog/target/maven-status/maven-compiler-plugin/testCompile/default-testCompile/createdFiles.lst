@@ -1,0 +1,10 @@
+cz\muni\ics\watchdog\unit\WatchdogAppTest.class
+cz\muni\ics\watchdog\unit\impl\WatchdogConfigCreatorTest.class
+cz\muni\ics\watchdog\unit\exceptions\WatchdogInitializationExceptionTest.class
+cz\muni\ics\watchdog\unit\UnitTest.class
+cz\muni\ics\watchdog\unit\impl\FolderWatchdogComponentTest.class
+cz\muni\ics\watchdog\unit\exceptions\WatchdogExceptionTest.class
+cz\muni\ics\watchdog\integration\WatchdogIT.class
+cz\muni\ics\watchdog\unit\dataclasses\WatchdogConfigTest.class
+cz\muni\ics\watchdog\unit\dataclasses\WatchdogDataTest.class
+cz\muni\ics\watchdog\unit\TemporaryTest.class

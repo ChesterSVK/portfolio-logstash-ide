@@ -1,0 +1,26 @@
+{
+    "manager" : {
+        "defaultViewMode" : "predefined",
+        "defaultViewModeFunctions" : "simple"
+    },
+    "language": {
+        "default": "en",
+        "available": ["cs", "en"]
+    },
+    "formatter": {
+        "datetime": {
+            "skeleton": "yMMMdHm"
+        },
+        "dateformats" : ["UNIX", "ISO8601", "UNIX_MS", "TAI64N"],
+        "anonymizeAlgorithms" : ["SHA512", "SHA384", "SHA256", "SHA1", "MD5", "MURMUR3", "PUNCTUATION", "IPV4_NETWORK"]
+    },
+    "api": {
+        "lang": "java",
+        "connectorUrl": "/import/transform/api",
+        "requestParams": {
+            "GET": {},
+            "POST": {},
+            "MIXED": {}
+        }
+    }
+}

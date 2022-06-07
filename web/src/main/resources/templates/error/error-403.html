@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <title id="titleHeader">403</title>
+</head>
+<body>
+
+<div class="fragment-content" layout:fragment="pageContent">
+    <div id="errorContainer" class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron text-center container mt-5">
+                    <h1 class="text-center">
+                        (ಠ ∩ಠ)
+                    </h1>
+                    <hr class="my-4">
+                    <h1 class="text-center">
+                        <span  id="reasonHeading" >
+                            The specific page could not be found:
+                        </span>
+                        <span id="reasonPage">
+                            -
+                        </span>
+                    </h1>
+                    <hr class="my-4">
+                    <div class="text-center">
+                        <a id="homeBtn" href="/" class="btn btn-info btn-lg"><i class="fas fa-home"></i><span id="linkText">Home</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

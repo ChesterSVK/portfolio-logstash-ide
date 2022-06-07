@@ -1,0 +1,82 @@
+<nav id="appNavBar" class="navbar navbar-expand-lg navbar-light bg-info">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a id="linkLogo" class="navbar-brand" href="/">
+        <img src="/img/copas-logo.png" alt="Copas Logo">
+    </a>
+    <div class="d-inline-block ml-1 mr-5">
+        <span id="containerText">
+        </span>
+        <span id="containerID">
+        </span>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li id="linkHomeItem" class="nav-item">
+                <a id="linkHome" class="btn nav-link" href="/">Home</a>
+            </li>
+            <li id="linkImportItem" class="nav-item">
+                <a id="linkImport" class="btn nav-link" href="/import">Import</a>
+            </li>
+            <li id="linkFilemanagerItem" class="nav-item">
+                <a id="linkFilemanager" class="btn nav-link" href="/filemanager">Filemanager</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="btn nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Tools
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#esStatusModal">
+                        Elasticsearch status
+                    </button>
+                    <a id="kibanaLink" target="_blank" class="dropdown-item" href="#">Kibana</a>
+                </div>
+            </li>
+            <li id="linkHistoryItem" class="nav-item">
+                <a id="linkHistory" class="btn nav-link" href="/history">History</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade h-100" id="esStatusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog h-100 d-flex" role="document">
+            <div class="modal-content align-self-center">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Elasticsearch status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h3 class="m-3">
+                        <span>
+                            Status:
+                        </span>
+                        <span id="esHealthStatus" class="badge">
+                        </span>
+                    </h3>
+                    <h4 class="m-3">
+                        <span>
+                            Port:
+                        </span>
+                        <span id="esPort" class="badge">
+                        </span>
+                    </h4>
+                    <h4 class="m-3">
+                        <span id="clusterText">
+                            Cluster:
+                        </span>
+                        <span id="esClusterName" class="badge">
+                        </span>
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button id="closeModalBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,12 @@
+cz\muni\ics\elasticsearch\acutate\HealthCheckTest.class
+cz\muni\ics\elasticsearch\dataclasses\LogstashCommandDataTest.class
+cz\muni\ics\elasticsearch\utils\LocalDateTimeFormmaterUtilTest.class
+cz\muni\ics\elasticsearch\validators\EmailValidatorTest.class
+cz\muni\ics\elasticsearch\dataclasses\ApplicationDataTest.class
+cz\muni\ics\elasticsearch\validators\StringValidatorTest.class
+cz\muni\ics\elasticsearch\ElasticsearchApplicationTest.class
+cz\muni\ics\elasticsearch\validators\LogstashConfigurationDataValidatorTest.class
+cz\muni\ics\elasticsearch\exceptions\ElasticsearchInitializationExceptionTest.class
+cz\muni\ics\elasticsearch\exceptions\ViolationExceptionTest.class
+cz\muni\ics\elasticsearch\validators\ApplicationDataValidatorTest.class
+cz\muni\ics\elasticsearch\utils\EsInitializationTest.class

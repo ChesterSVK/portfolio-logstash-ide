@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{base}">
+<head>
+    <title id="titleHeader">Admin</title>
+    <th:block layout:fragment="dynamicStylesheets">
+    </th:block>
+</head>
+<body>
+
+<div layout:fragment="pageContent">
+
+    <div layout:fragment="content" th:remove="tag">
+        <div id="adminContainer" class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="jumbotron text-center mt-5 mb-5">
+                        <h1 id="mainHeader" class="text-center p-4">
+                            Application admin home
+                        </h1>
+                        <div class="text-center p-4">
+                            <h3 id="adminAbilities" class="w-50 mt-0 mb-0 ml-auto mr-auto">Text</h3>
+                            <ul class="list-group mt-5 mb-5 w-50 ml-auto mr-auto">
+                                <li id="deleteHistoryCommands" class="list-group-item">
+                                    Delete
+                                </li>
+                            </ul>
+                        </div>
+                        <hr class="my-4">
+                        <div class="text-center p-4">
+                            <a id="importBtn" href="/import/" class="btn btn-lg btn-info">
+                                Import
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<footer>
+    <th:block layout:fragment="dynamicScripts">
+    </th:block>
+</footer>
+</html>

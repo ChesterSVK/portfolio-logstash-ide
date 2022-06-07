@@ -1,0 +1,492 @@
+<div id="importTransformer" class="ft-container">
+    <div class="ft-loading-wrap" data-bind="visible: $root.loadingView()"></div>
+
+    <div class="discontinue-button-holder">
+        <div class="button-group align-self-center">
+            <a href="/import/convert" id="discontinueBtn" class="btn btn-info control-btn">
+                <span data-bind="text: $root.lg.back">
+                </span>
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+    <div class="continue-button-holder">
+        <div class=" button-group align-self-center">
+            <a href="/import/summary" id="continueBtn" class="btn btn-info control-btn">
+                <i class="fas fa-arrow-right"></i>
+                <span data-bind="text: $root.lg.continue">
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="row h-100">
+        <div class="col-sm-6">
+            <div class="ft-wrapper">
+                <div class="row ft-holder">
+                    <div id="attributesHolder" class="col-sm-5 transform-column" data-bind="with: itemsModel">
+                        <h3 id="attributesHolderHeader" class="text-center"
+                            data-bind="text: $root.lg.parsed_attributes">
+                        </h3>
+                        <div id="attributesColumn" class="column-content row" data-bind="koGrid: gridOptions">
+                        </div>
+                    </div>
+                    <div id="transformationsHolder" class="col-sm-7 transform-column" data-bind="with: functionsModel">
+                        <h3 id="transformationsHolderHeader" class="text-center"
+                            data-bind="text: $root.lg.transformation_functions">
+                        </h3>
+                        <div class="button-group">
+                            <button class="btn btn-info no-label" type="button"
+                                    data-bind="attr: {title: $root.lg.default_transformations}, click: displayDefault, css: {active: viewMode() === 'default'}">
+                                <span><i class="fas fa-list"></i></span>
+                            </button>
+                            <button class="btn btn-info no-label" type="button"
+                                    data-bind="attr: {title: $root.lg.predefined_transformations}, click: displayPredefined, css: {active: viewMode() === 'predefined'}">
+                                <span><i class="fas fa-clipboard-list"></i></span>
+                            </button>
+                        </div>
+                        <div id="transformationsColumn" class="column-content">
+                            <div data-bind="visible: viewMode() === 'predefined'">
+                                <ul id="predefinedTransformations" class="nav flex-column transformation-controls-list"
+                                    data-bind="template: {name: 'node-parent-template', foreach: predefinedFunctions.rootFunctions, as: 'tItemNode', templateOptions: { type: 'predefined'} }"></ul>
+                            </div>
+                            <div data-bind="visible: viewMode() === 'default'">
+                                <ul id="defaultTransformations" class="nav flex-column transformation-controls-list"
+                                    data-bind="template: {name: 'node-parent-template', foreach: defaultFunctions.rootFunctions, as: 'tItemNode'}"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ft-wrapper">
+                <div class="ft-holder">
+                    <div id="transformationFunctionsHolder" data-bind="with: functionsModel.usedFunctions">
+                        <div class="header text-center">
+                            <div class="button-group w-100">
+                                <button class="btn btn-info no-label" type="button"
+                                        data-bind="attr: {title: $root.lg.reset}, click: resetFunctions">
+                                    <span><i class="fas fa-undo-alt"></i></span>
+                                </button>
+                                <button class="separator bg-dark" type="button">&nbsp;</button>
+                                <button class="btn btn-info no-label" type="button"
+                                        data-bind="attr: {title: $root.lg.functions_simple}, click: displaySimple, css: {active: viewModeFunctions() === 'simple'}">
+                                    <span><i class="fas fa-ellipsis-h"></i></span>
+                                </button>
+                                <button class="btn btn-info no-label" type="button"
+                                        data-bind="attr: {title: $root.lg.functions_detailed}, click: displayDetailed, css: {active: viewModeFunctions() === 'detailed'}">
+                                    <span><i class="fas fa-align-left"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div id="simpleFunctionsHolder"
+                                 data-bind="visible: viewModeFunctions() === 'simple'">
+                                <ul id="usedTransformations"
+                                    class="nav flex-column list-group transformation-controls-list"
+                                    data-bind="template: {name: 'node-parent-delete-template', foreach: usedFunctionsSimple, as: 'tItemNode'}"></ul>
+                            </div>
+                            <div id="detailedFunctionsHolder"
+                                 data-bind="visible: viewModeFunctions() === 'detailed'">
+                                <label class="textarea-holder">
+                                    <textarea disabled data-bind="value: usedFunctionsDetailed"></textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ft-forms-holder" data-bind="with: formsModel">
+            <!-- Modal -->
+            <div class="modal fade form-modal" id="LBOOLModalForm" tabindex="-1" role="dialog"
+                 data-bind="with: booleanForm"
+                 aria-labelledby="booleanModalFormTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form data-bind="submit: submitCommand">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" data-bind="click: resetForm"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <label for="checkboxInput" class="modal-title m-0 pb-3" id="booleanModalFormTitle"
+                                       data-bind="text: $root.lg.boolean"></label>
+                                <input id="checkboxInput" class="w-75 p-1 m-auto form-control form-control-sm"
+                                       type="checkbox"
+                                       data-bind="checked: newItemValue"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        data-bind="click: resetForm, text: $root.lg.close">
+                                </button>
+                                <button type="submit" class="btn btn-info"
+                                        data-bind="text: $root.lg.submit_arg"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade form-modal" id="LSTRINGModalForm" tabindex="-1" role="dialog"
+                 data-bind="with: stringForm"
+                 aria-labelledby="stringModalFormTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form data-bind="submit: submitCommand">
+                            <div class="modal-header">
+                                <button type="button" class="close ml-0 btn-sm"
+                                        data-bind="click: initFromSelectedItems, attr: { title: $root.lg.get_selected}">
+                                    <span><i class="fas fa-check-square"></i></span>
+                                </button>
+                                <h6 data-bind="text: $root.lg.get_selected" class="p-1 pl-2"></h6>
+                                <button type="button" class="close" data-dismiss="modal" data-bind="click: resetForm"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <h5 class="modal-title m-0 pb-3" id="stringModalFormTitle"
+                                    data-bind="text: $root.lg.string"></h5>
+                                <input class="w-75 p-1 m-auto form-control form-control-sm" required type="text"
+                                       minlength="1" maxlength="50"
+                                       data-bind="value: newItemValue, attr:{ placeholder: $root.lg.string_arg } "/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        data-bind="click: resetForm, text: $root.lg.close">
+                                </button>
+                                <button type="submit" class="btn btn-info"
+                                        data-bind="text: $root.lg.submit_arg"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade form-modal" id="LANONYMIZE_ALGOModalForm" tabindex="-1" role="dialog"
+                 data-bind="with: methodForm"
+                 aria-labelledby="annmModalFormTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form data-bind="submit: submitCommand">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" data-bind="click: resetForm"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <h5 class="modal-title m-0 pb-3" id="annmModalFormTitle"
+                                    data-bind="text: $root.lg.annm_algo"></h5>
+                                <select class="p-1 form-control form-control-sm m-auto w-75" required
+                                        data-bind="options: algos, value: newItemValue">
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        data-bind="click: resetForm, text: $root.lg.close">
+                                </button>
+                                <button type="submit" class="btn btn-info"
+                                        data-bind="text: $root.lg.submit_arg"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade form-modal" id="LARRAYModalForm" tabindex="-1" role="dialog"
+                 data-bind="with: arrayForm"
+                 aria-labelledby="arrayModalFormTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header button-group">
+                            <button type="button" class="close ml-0 btn-sm"
+                                    data-bind="click: initFromSelectedItems, attr: { title: $root.lg.get_selected}">
+                                <span><i class="fas fa-check-square"></i></span>
+                            </button>
+                            <h6 data-bind="text: $root.lg.get_selected" class="p-1 pl-2"></h6>
+                            <button type="button" class="close" data-dismiss="modal" data-bind="click: resetForm"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h5 class="modal-title m-0 pb-3" id="arrayModalFormTitle"
+                                data-bind="text: $root.lg.array"></h5>
+                            <form class="input-form" data-bind="submit: addItem">
+                                <div class="form-row text-center pl-1 pr-1">
+                                    <div class="col-10">
+                                        <input class="p-1 form-control form-control-sm"
+                                               data-bind="value: newItemText,  attr:{ placeholder: $root.lg.array_arg }"/>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="submit" class="btn form-btn"
+                                                data-bind="attr: { title: $root.lg.add_array_item}">
+                                            <span><i class="fas fa-plus"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr class="mr-4">
+                        </div>
+                        <form data-bind="submit: submitCommand">
+                            <div class="modal-body text-center">
+                                <ul class="list-group d-flex flex-row flex-wrap w-100 m-0"
+                                    data-bind="foreach: iItems, visible: iItems().length > 0">
+                                    <li class="list-group-item col-12 m-auto">
+                                        <div class="form-row text-center pl-1 pr-1">
+                                            <div class="col-11">
+                                                <input class="w-75 p-1 form-control form-control-sm" required
+                                                       type="text"
+                                                       minlength="1" maxlength="50"
+                                                       data-bind="value: attribute, attr:{ placeholder: $root.lg.array_arg }"/>
+                                            </div>
+                                            <a href="#" class="btn form-btn col-1"
+                                               data-bind="click: $parent.removeItem, attr: { title: $root.lg.remove_array_item}">
+                                                <span><i class="fas fa-times"></i></span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        data-bind="click: resetForm, text: $root.lg.close">
+                                </button>
+                                <button type="submit" class="btn btn-info"
+                                        data-bind="text: $root.lg.submit_arg"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade form-modal" id="LTIMESTAMP_ARRAYModalForm" tabindex="-1" role="dialog"
+                 data-bind="with: timestampArrayForm"
+                 aria-labelledby="tArrayModalFormTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header button-group">
+                            <button type="button" class="close ml-0 btn-sm"
+                                    data-bind="click: initFromSelectedItems, attr: { title: $root.lg.get_selected}">
+                                <span><i class="fas fa-check-square"></i></span>
+                            </button>
+                            <h6 data-bind="text: $root.lg.get_selected" class="p-1 pl-2"></h6>
+                            <button type="button" class="close" data-dismiss="modal" data-bind="click: resetForm"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-form text-center">
+                            <h5 class="modal-title m-0 pb-3" id="tArrayModalFormTitle"
+                                data-bind="text: $root.lg.array"></h5>
+                            <div class="modal-body">
+                                <form class="input-form" data-bind="submit: addItem">
+                                    <div class="form-row text-center pl-1 pr-1">
+                                        <div class="col-10">
+                                            <select class="p-1 form-control form-control-sm"
+                                                    data-bind="options: availableFormats, value: selectedFormat,  attr:{ placeholder: $root.lg.array_arg }">
+                                            </select>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="submit" class="btn form-btn"
+                                                    data-bind="attr: { title: $root.lg.add_array_item}">
+                                                <span><i class="fas fa-plus"></i></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <hr class="mr-4">
+                            </div>
+                        </div>
+                        <form data-bind="submit: submitCommand">
+                            <div class="modal-body text-center">
+                                <h5 class="modal-title m-0 pb-3" id="tArrayStringModalFormTitle"
+                                    data-bind="text: $root.lg.string"></h5>
+                                <input class="w-75 p-1 m-auto form-control form-control-sm" required type="text"
+                                       minlength="1" maxlength="50"
+                                       data-bind="value: newItemValue, attr:{ placeholder: $root.lg.string_arg } "/>
+                                <hr class="mr-4">
+                                <ul class="list-group d-flex flex-row flex-wrap w-100 m-0"
+                                    data-bind="foreach: iItems, visible: iItems().length > 0">
+                                    <li class="list-group-item col-12 m-auto">
+                                        <div class="form-row text-center pl-1 pr-1">
+                                            <div class="col-11">
+                                                <input class="w-75 p-1 form-control form-control-sm" required
+                                                       type="text"
+                                                       disabled
+                                                       minlength="1" maxlength="50"
+                                                       data-bind="value: attribute, attr:{ placeholder: $root.lg.array_arg }"/>
+                                            </div>
+                                            <a href="#" class="btn form-btn col-1"
+                                               data-bind="click: $parent.removeItem, attr: { title: $root.lg.remove_array_item}">
+                                                <span><i class="fas fa-times"></i></span>
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        data-bind="click: resetForm, text: $root.lg.close">
+                                </button>
+                                <button type="submit" class="btn btn-info"
+                                        data-bind="text: $root.lg.submit_arg"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade form-modal" id="LHASH_MAPModalForm" tabindex="-1" role="dialog"
+                 data-bind="with: mapForm"
+                 aria-labelledby="mapModalFormTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header button-group">
+                            <button type="button" class="close ml-0 btn-sm"
+                                    data-bind="click: initFromSelectedItems, attr: { title: $root.lg.get_selected}">
+                                <span><i class="fas fa-check-square"></i></span>
+                            </button>
+                            <h6 data-bind="text: $root.lg.get_selected" class="p-1 pl-2"></h6>
+                            <button type="button" class="close" data-dismiss="modal" data-bind="click: resetForm"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="modal-title m-0 pb-3" id="mapModalFormTitle"
+                                data-bind="text: $root.lg.map"></h5>
+                            <form class="input-form" data-bind="submit: addItem">
+                                <div class="form-row text-center pl-3 pr-1">
+                                    <div class="col-5">
+                                        <input class="p-1 form-control form-control-sm"
+                                               data-bind="value: newItemKeyText, attr:{ placeholder: $root.lg.map_key_arg }"/>
+
+                                    </div>
+                                    <div class="col-5">
+                                        <input class="p-1 form-control form-control-sm"
+                                               data-bind="value: newItemValueText, attr:{ placeholder: $root.lg.map_value_arg}"/>
+
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="submit" class="btn form-btn"
+                                                data-bind="attr: { title: $root.lg.add_map_item}">
+                                            <span><i class="fas fa-plus"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr class="mr-4">
+                        </div>
+                        <form data-bind="submit: submitCommand">
+                            <div class="modal-body text-center">
+                                <ul class="list-group d-flex flex-row flex-wrap w-100 m-0"
+                                    data-bind="foreach: iItems, visible: iItems().length > 0">
+                                    <li class="list-group-item m-auto">
+                                        <div class="form-row text-center pl-1 pr-1">
+                                            <div class="col-5">
+                                                <input class="p-1 form-control form-control-sm" required
+                                                       type="text" minlength="1" maxlength="50"
+                                                       data-bind="value: key, attr:{ placeholder: $root.lg.map_key_arg}"/>
+                                            </div>
+                                            <div class="col-5">
+                                                <input class="p-1 form-control form-control-sm" required
+                                                       type="text" minlength="1" maxlength="50"
+                                                       data-bind="value: value, attr:{ placeholder: $root.lg.map_value_arg}"/>
+                                            </div>
+                                            <div class="col-2">
+                                                <a href="#" class="btn form-btn"
+                                                   data-bind="click: $parent.removeItem, attr: { title: $root.lg.remove_map_item}">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        data-bind="click: resetForm, text: $root.lg.close">
+                                </button>
+                                <button type="submit" class="btn btn-info"
+                                        data-bind="text: $root.lg.submit_arg"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Templates-->
+    <script type="text/html" id="node-parent-template">
+        <!-- ko template: {name: 'node-template', data: tItemNode} -->
+        <!-- /ko -->
+    </script>
+
+    <script type="text/html" id="node-parent-delete-template">
+        <!-- ko template: {name: 'node-delete-template', data: tItemNode} -->
+        <!-- /ko -->
+    </script>
+
+    <script type="text/html" id="node-template">
+        <li class="nav-item">
+            <a class="nav-link collapsed dropdown-effect"
+               data-bind="attr: { href: '#' + id , id: 'link' + id , 'data-toggle' : 'collapse', 'data-target' : commandArgument.length ? '#collapse-' + id : ''}, css: getClass(), click: postFunction">
+                <span data-bind="text: tItemNode.commandName"></span>
+                <!-- ko if: commandArgument.length > 0 -->
+                <i class="fas fa-caret-down collapsible-icon"></i>
+                <i class="fas fa-caret-up visible-icon"></i>
+                <!-- /ko  -->
+                <i class="fas fa-asterisk ml-3 required-icon"
+                   data-bind="visible: tItemNode.required, attr: { title : $root.lg.required}"></i>
+            </a>
+
+            <!-- ko if: commandArgument.length > 0 -->
+            <div class="collapse" data-bind="attr: {id: 'collapse-' + id }" aria-expanded="false">
+                <ul class="flex-column nav dropdown-list"
+                    data-bind="template: {name: 'node-parent-template', foreach: commandArgument, as: 'tItemNode'}">
+                </ul>
+            </div>
+            <!-- /ko -->
+        </li>
+    </script>
+
+    <script type="text/html" id="node-delete-template">
+        <li class="list-group-item list-group-item-action">
+            <div class="row m-0">
+                <div class="col-10">
+                    <a class="nav-link d-inline-block collapsed dropdown-effect"
+                       data-bind="attr: { href: '#' + id , id: 'link' + id , 'data-toggle' : 'collapse', 'data-target' : '#collapse-' + id}">
+                        <span data-bind="text: tItemNode.commandName"></span>
+                        <!-- ko if: commandArgument.length > 0 -->
+                        <i class="fas fa-caret-down collapsible-icon"></i>
+                        <i class="fas fa-caret-up visible-icon"></i>
+                        <!-- /ko  -->
+                    </a>
+                </div>
+                <div class="col-2 text-center">
+                    <a href="#" class="btn" data-bind="click: deleteFunction">
+                        <span><i class="fas fa-times"></i></span>
+                    </a>
+                </div>
+            </div>
+            <!-- ko if: commandArgument.length > 0 -->
+            <div class="collapse" data-bind="attr: {id: 'collapse-' + id }" aria-expanded="false">
+                <ul class="flex-column nav dropdown-list"
+                    data-bind="template: {name: 'node-parent-delete-template', foreach: commandArgument, as: 'tItemNode'}">
+                </ul>
+            </div>
+            <!-- /ko -->
+        </li>
+    </script>
+    <!--Templates End-->
+
+</div>

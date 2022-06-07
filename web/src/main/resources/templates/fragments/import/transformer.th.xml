@@ -1,0 +1,10 @@
+<thlogic>
+    <attr sel="#importTransformer"
+          th:fragment="transformerFragment"/>
+
+    <attr sel="#discontinueBtn"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).CONVERT_LINK}__}"/>
+    <attr sel="#continueBtn"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).SUMMARY_LINK}__}"/>
+
+</thlogic>

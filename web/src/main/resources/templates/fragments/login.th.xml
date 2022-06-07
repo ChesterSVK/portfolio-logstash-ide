@@ -1,0 +1,27 @@
+<thlogic>
+    <attr sel="#appLogin"
+          th:fragment="loginFragment"/>
+
+    <attr sel="#invalidCredentialsTitle"
+          th:if="${param.error}"
+          th:text="#{page.admin.login.invalid.credentials}"/>
+    <attr sel="#logoutTitle"
+          th:if="${param.logout}"
+          th:text="#{page.admin.login.loggedout}"/>
+    <attr sel="#loggedOutTitle"
+          th:if="${param.loggedOut}"
+          th:text="#{page.admin.login.already.loggedout}"/>
+    <attr sel="#usernameLabel"
+          th:text="#{page.admin.login.username}"/>
+    <attr sel="#usernameInputTitle"
+          th:placeholder="#{page.admin.login.username}"/>
+    <attr sel="#passwordLabel"
+          th:text="#{page.admin.login.username}"/>
+    <attr sel="#passwordInputTitle"
+          th:placeholder="#{page.admin.login.pass}"/>
+    <attr sel="#loginSubmitTitle"
+          th:value="#{page.admin.login.submit}"/>
+
+    <attr sel="#loginForm"
+          th:action="@{/login}"/>
+</thlogic>

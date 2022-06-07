@@ -1,0 +1,50 @@
+<div id="appLogin">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="loginFormHolder">
+                    <form id="loginForm" action="login" method="post">
+                        <div id="invalidCredentialsTitle" class="alert alert-danger">
+                            Invalid username or password.
+                        </div>
+                        <div id="logoutTitle" class="alert alert-info">
+                            You have been logged out.
+                        </div>
+                        <div id="loggedOutTitle" class="alert alert-warning">
+                            You have not been logged in.
+                        </div>
+                        <div class="form-group">
+                            <label id="usernameLabel" for="usernameInputTitle">Username</label>:
+                            <input type="text"
+                                   id="usernameInputTitle"
+                                   name="username"
+                                   class="form-control"
+                                   autofocus="autofocus"
+                                   placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label id="passwordLabel" for="passwordInputTitle">Password</label>:
+                            <input type="password"
+                                   id="passwordInputTitle"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="submit"
+                                           name="login-submit"
+                                           id="loginSubmitTitle"
+                                           class="form-control btn btn-info"
+                                           value="Log In">
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

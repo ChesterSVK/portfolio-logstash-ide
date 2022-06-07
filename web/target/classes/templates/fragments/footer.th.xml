@@ -1,0 +1,76 @@
+<thlogic>
+
+    <!--Variables-->
+    <attr sel="#footerContainerInfo"
+          th:text="#{footer.container.info}"/>
+    <attr sel="#footerInstitute"
+          th:text="#{footer.institute}"/>
+    <attr sel="#footerCopasVersion"
+          th:text="#{footer.copas.version}"/>
+    <attr sel="#footerBuildVersion"
+          th:text="#{footer.build.version}"/>
+    <attr sel="#footerCopasImage"
+          th:text="#{footer.copas.image}"/>
+    <attr sel="#footerContact"
+          th:text="#{footer.contact}"/>
+    <attr sel="#footerLanguage"
+          th:text="#{footer.language}"/>
+    <attr sel="#footerApp"
+          th:text="#{footer.application}"/>
+
+    <attr sel="#footerCopasVersionValue"
+          th:if="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getCopasVersion().isEmpty() == false}"
+          th:text="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getCopasVersion()}"/>
+    <attr sel="#footerBuildVersionValue"
+          th:if="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getAppBuildVersion().isEmpty() == false}"
+          th:text="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getAppBuildVersion()}"/>
+    <attr sel="#footerCopasImageValue"
+          th:if="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getCopasImageVersion().isEmpty() == false}"
+          th:text="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getCopasImageVersion()}"/>
+    <attr sel="#footerAbout"
+          th:text="#{page.about}"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).ABOUT}__}"/>
+    <attr sel="#footerSettings"
+          th:text="#{footer.settings}"
+          th:href="home"/>
+    <!--<attr th:if="${!loggedIn}" sel="#footerAdminLogin">-->
+        <!--<attr sel="#footerAdminLoginBtn"-->
+              <!--th:text="#{footer.admin.login}"-->
+              <!--th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).LOGIN}__}">-->
+        <!--</attr>-->
+    <!--</attr>-->
+    <!--<attr th:if="${loggedIn}" sel="#footerAdminButtons">-->
+        <!--<attr sel="#adminHeader"-->
+        <!--th:text="#{footer.admin}"/>-->
+        <!--<attr sel="#adminLogoutForm"-->
+              <!--th:action="@{__${T(cz.muni.ics.web.utils.ViewLinks).LOGOUT}__}">-->
+            <!--<attr sel="#adminLogoutFormBtn" th:value="#{footer.admin.logout}">-->
+            <!--</attr>-->
+        <!--</attr>-->
+    <!--</attr>-->
+    <!--<attr th:if="${loggedIn}" sel="#adminHomeSpan">-->
+        <!--<attr sel="#adminHomeLink"-->
+              <!--th:text="#{footer.admin.home}"-->
+              <!--th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).ADMIN_HOME}__}"/>-->
+    <!--</attr>-->
+    <!--<attr th:if="${loggedIn}" sel="#adminHistorySpan">-->
+        <!--<attr sel="#adminHistoryLink"-->
+              <!--th:text="#{footer.admin.history}"-->
+              <!--th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).ADMIN_HISTORY}__}"/>-->
+    <!--</attr>-->
+    <attr sel="#copasInfo"
+          th:if="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getContainerId().isEmpty() == false}"
+          th:href="@{__${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getSupervisorMail()}__}"/>
+    <attr sel="#footerSupervisorMail"
+          th:href="@{__${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getSupervisorMail()}__}"/>
+    <attr sel="#footerCzechLanguage"
+          th:text="#{footer.language.czech}"
+          th:href="@{__${#httpServletRequest.requestURI}__?langCode=cs}"/>
+    <attr sel="#footerEnglishLanguage"
+          th:text="#{footer.language.english}"
+          th:href="@{__${#httpServletRequest.requestURI}__?langCode=en}"/>
+
+    <attr sel="#appFooter"
+          th:fragment="footerFragment(loggedIn)"/>
+
+</thlogic>

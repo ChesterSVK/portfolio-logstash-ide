@@ -1,0 +1,649 @@
+.ft-container {
+    position: relative;
+}
+
+.ft-container * {
+    font-family: inherit;
+    box-sizing: content-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: content-box;
+}
+
+.ft-container {
+    padding: 0 15px !important;
+    background-color: rgba(204, 236, 249, 0.7);
+    height: 100%;
+}
+
+.ft-container .ft-wrapper,
+.ft-container .ft-wrapper .ft-holder {
+    height: 100%;
+}
+
+.ft-container .ft-wrapper .ft-holder {
+    padding: 15px;
+}
+
+/*Loading*/
+.ft-container .ft-loading-wrap {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    background: white url(/plug-in/filemanager/images/spinner.gif) no-repeat center center;
+    z-index: 999;
+}
+
+.ft-container .ft-wrapper .ft-holder .transform-column {
+    background: #17a2b8;
+    padding: 15px;
+}
+
+.ft-container .ft-wrapper .ft-holder .column-content {
+    height: 100%;
+}
+
+.ft-container .ft-wrapper .ft-holder #attributesHolder .column-content {
+    background: #fff;
+}
+
+.ft-container .ft-wrapper .ft-holder #attributesHolder #attributesColumn {
+    box-shadow: inset 0 0 10px 3px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    align-items: flex-start;
+    overflow-y: auto;
+    align-content: flex-start;
+}
+
+.ft-container .ft-wrapper .ft-holder .button-group .separator {
+    padding: 0 1px;
+    background-color: #ffffff;
+    width: 2px;
+    margin: 1px 5px 0;
+    border: none;
+    cursor: default;
+}
+
+.ft-container .ft-wrapper .ft-holder .button-group {
+    padding: 0.6rem 0;
+    text-align: center;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsHolderHeader,
+.ft-container .ft-wrapper .ft-holder #attributesHolder #attributesHolderHeader {
+    border-bottom: 1px solid #fff;
+    margin-bottom: 0;
+    padding-bottom: 0.2rem;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn {
+    overflow-y: auto;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn .transformation-controls-list .required-icon{
+    font-size: 0.9em;
+    width: 0.6em;
+}
+.ft-container .ft-wrapper .ft-holder .collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn .transformation-controls-list .dropdown-effect .visible-icon,
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn .transformation-controls-list .dropdown-effect .collapsible-icon {
+    margin: 0 1em;
+}
+
+.ft-container .ft-wrapper .ft-holder .transformation-controls-list .dropdown-effect .collapsible-icon {
+    display: none;
+}
+
+.ft-container .ft-wrapper .ft-holder .transformation-controls-list .dropdown-effect.collapsed .collapsible-icon {
+    display: inline-block;
+}
+
+.ft-container .ft-wrapper .ft-holder .transformation-controls-list .dropdown-effect .visible-icon {
+    display: inline-block;
+}
+
+.ft-container .ft-wrapper .ft-holder .transformation-controls-list .dropdown-effect.collapsed .visible-icon {
+    display: none;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn .transformation-controls-list .dropdown-effect:not(.collapsed) {
+    border-left: 4px solid #fff;
+    border-top: 3px solid #17a2b8;
+    transition: none;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn .transformation-controls-list .nav-link {
+    color: #fff;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn .transformation-controls-list .nav-link:hover {
+    background: #1ab2ca;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn .transformation-controls-list .nav-link:active {
+    background: #179cb2;
+    box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder #transformationsColumn .transformation-controls-list .dropdown-list {
+    border-left: 8px solid #fff;
+    border-bottom: 3px solid #17a2b8;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationsHolder {
+    padding-left: 0;
+}
+
+/*Table Transformation Functions Holder*/
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder {
+    background: #fff;
+    border: 1px solid #ccc;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .header {
+    flex: 0.08;
+    border-bottom: 1px solid #17a2b8;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content {
+    flex: 0.92;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content #detailedFunctionsHolder,
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content #simpleFunctionsHolder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content #simpleFunctionsHolder .functions-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow-y: auto;
+}
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content #detailedFunctionsHolder .textarea-holder {
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content #detailedFunctionsHolder textarea {
+    width: 150vh;
+    height: 100%;
+    cursor: text;
+    background-color: rgba(204, 236, 249, 0.7);
+    font-family: "Consolas", monospace;
+    padding: 1em;
+    word-break: break-all;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content .function-name-holder{
+    padding: 0.5em 2em;
+}
+
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content .function-name-holder .function-wrapper{
+    border-radius: 10px;
+    padding: .5em;
+    background-color: #fff;
+    border: 1px solid #17a2b8;
+    text-align: center;
+}
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content .function-name-holder .function-wrapper .btn{
+    color: #0b4853;
+    background: #fff;
+    margin-left: 1em;
+}
+.ft-container .ft-wrapper .ft-holder #transformationFunctionsHolder .content .function-name-holder .function-wrapper .btn:hover{
+    background: #17a2b8;
+    color: #fff;
+}
+
+/*Used Function Holder*/
+.ft-container .ft-wrapper .ft-holder #usedTransformations.transformation-controls-list .nav-link,
+.ft-container .ft-wrapper .ft-holder #usedTransformations.transformation-controls-list .btn{
+    color: #17a2b8;
+}
+.ft-container .ft-wrapper .ft-holder #usedTransformations.transformation-controls-list .nav-link:hover,
+.ft-container .ft-wrapper .ft-holder #usedTransformations.transformation-controls-list .btn:hover{
+    color: #0b4853;
+}
+
+.ft-container .ft-wrapper .ft-holder #usedTransformations.transformation-controls-list .list-group-item{
+    border-radius: 0;
+    padding: 0.5rem;
+    padding-right: 0;
+    padding-left: 2em;
+}
+.ft-container .ft-wrapper .ft-holder #usedTransformations.transformation-controls-list .dropdown-list .list-group-item{
+    border-right:0;
+}
+
+
+/*Forms Holder*/
+.ft-container .ft-forms-holder .button-group > button {
+    margin-left: auto;
+    margin-right: auto;
+}
+.ft-container .ft-forms-holder .button-group > button:first-child{
+    margin-right: 0;
+    margin-left: 0;
+}
+.ft-container .ft-forms-holder .button-group > button:last-child{
+    margin-left: auto;
+    margin-right: 0;
+}
+.ft-container .ft-forms-holder .form-modal .input-form input{
+    height: 100%;
+}
+.ft-container .ft-forms-holder .form-modal .form-btn{
+    padding: 0;
+    height: 100%;
+    background: transparent;
+    color: #888;
+    border-radius: 0;
+}
+.ft-container .ft-forms-holder .form-modal .form-btn:not(:disabled):not(.disabled):hover{
+    color: #000;
+}
+.ft-container .ft-forms-holder .button-group .separator {
+    padding: 0 1px;
+    background-color:  #0b4853;
+    width: 2px;
+    border: none;
+    cursor: default;
+}
+
+
+
+
+.ft-container .ft-wrapper .ft-holder #attributesHolder,
+.ft-container .ft-wrapper .ft-holder #transformationsHolder {
+    display: flex;
+    flex-direction: column;
+}
+
+.ft-container .ft-wrapper .ft-holder #attributesHolder #attributesColumn .attribute-holder {
+    padding: 0.4rem;
+    text-align: center;
+}
+
+.ft-container .ft-wrapper .ft-holder #attributesHolder #attributesColumn .attribute-holder .attribute-button-holder {
+    padding: 0.4rem;
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #17a2b8;
+    text-overflow: ellipsis;
+    transition: none;
+}
+
+.ft-container .ft-wrapper .ft-holder #attributesHolder #attributesColumn .attribute-holder .attribute-button-holder.selected {
+    background: rgba(23, 169, 191, 0.37);
+}
+
+.ft-container .ft-wrapper .ft-holder #attributesHolder #attributesColumn .attribute-holder .attribute-button-holder:hover {
+    background: #17a2b8;
+    border: 1px solid #ccc;
+    color: #fff;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+    transition: none;
+}
+
+.ft-container .ft-wrapper .ft-holder #attributesHolder #attributesColumn .attribute-holder .attribute-button-holder:active {
+    background: #169aaf;
+    box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.3);
+    transition: none;
+}
+
+
+/** Modal dialog by Alertify plugin */
+
+.ft-popup.alertify,
+.ft-log.alertify-logs {
+    font-family: Oxygen, Lucida Sans Unicode, Lucida Grande, sans-serif;
+}
+
+.ft-log.alertify-logs {
+    font-size: 13px;
+    line-height: 13px;
+}
+
+.ft-log.alertify-logs.left {
+    left: 20px;
+}
+
+.ft-log.alertify-logs.right {
+    right: 35px;
+}
+
+.ft-log.alertify-logs.top {
+    top: 50px;
+}
+
+.ft-log.alertify-logs.bottom {
+    bottom: 50px;
+}
+
+.ft-log.alertify-logs .progress {
+    padding-top: 1px;
+    text-align: center;
+}
+
+.ft-log.alertify-logs .progress .progress-counter {
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    right: 0;
+}
+
+.ft-log.alertify-logs .progress .progress-bar {
+    opacity: 1;
+    display: block;
+    height: 12px;
+    overflow: hidden;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.ft-log.alertify-logs .progress .progress-segment {
+    height: 100%;
+    float: left;
+}
+
+.ft-log.alertify-logs .progress .progress-segment {
+    height: 100%;
+    float: left;
+}
+
+.ft-log.alertify-logs .progress .progress-segment.progress-succeed {
+    background-color: #5ab01e;
+}
+
+.ft-log.alertify-logs .progress .progress-segment.progress-failure {
+    background-color: #d50700;
+}
+
+.ft-log.alertify-logs .progress .progress-bar.striped .progress-segment {
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    -webkit-background-size: 2rem 2rem;
+    background-size: 2rem 2rem;
+}
+
+.ft-log.alertify-logs .progress .progress-bar.animated .progress-segment {
+    -webkit-animation: progress-bar-motion 2s linear infinite;
+    -o-animation: progress-bar-motion 2s linear infinite;
+    animation: progress-bar-motion 2s linear infinite;
+}
+
+@-webkit-keyframes progress-bar-motion {
+    from {
+        background-position: 0 2rem;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+@-o-keyframes progress-bar-motion {
+    from {
+        background-position: 0 2rem;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+@keyframes progress-bar-motion {
+    from {
+        background-position: 0 2rem;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+.ft-popup.alertify .alert,
+.ft-popup.alertify .dialog {
+    text-align: center;
+    font-size: 12px;
+}
+
+.ft-popup.alertify .alert > *,
+.ft-popup.alertify .dialog > * {
+    width: auto;
+    display: inline-block;
+}
+
+.ft-popup.alertify .alert [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button),
+.ft-popup.alertify .dialog [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button) {
+    font-size: 13px;
+    line-height: 32px;
+    min-height: 32px;
+}
+
+.alertify {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999
+}
+
+.alertify.hide {
+    opacity: 0;
+    pointer-events: none
+}
+
+.alertify, .alertify.show {
+    box-sizing: border-box;
+    transition: all 0.33s cubic-bezier(0.25, 0.8, 0.25, 1)
+}
+
+.alertify, .alertify * {
+    box-sizing: border-box
+}
+
+.alertify .dialog, .alertify .alert {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    top: 50%
+}
+
+.alertify .dialog > *, .alertify .alert > * {
+    width: 400px;
+    max-width: 95%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 18px;
+    background: #fff;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.14), 0 4px 5px 0 rgba(0, 0, 0, 0.098), 0 1px 10px 0 rgba(0, 0, 0, 0.084)
+}
+
+.alertify .dialog [data-alertify-msg], .alertify .alert [data-alertify-msg] {
+    padding-bottom: 12px;
+    text-align: left
+}
+
+.alertify .dialog input[data-alertify-input]:not(.form-control), .alertify .alert input[data-alertify-input]:not(.form-control) {
+    width: 100%;
+    font-size: 100%;
+    padding: 8px
+}
+
+.alertify .dialog input[data-alertify-input]:not(.form-control):focus, .alertify .alert input[data-alertify-input]:not(.form-control):focus {
+    outline-offset: -2px
+}
+
+.alertify .dialog [data-alertify-btn-holder], .alertify .alert [data-alertify-btn-holder] {
+    text-align: right;
+    margin-top: 12px
+}
+
+.alertify .dialog [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button), .alertify .alert [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button) {
+    background: transparent;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.87);
+    position: relative;
+    outline: 0;
+    display: inline-block;
+    align-items: center;
+    padding: 0 6px;
+    margin-left: 15px;
+    line-height: 36px;
+    min-height: 36px;
+    white-space: nowrap;
+    min-width: 88px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #DBDBDB;
+    border-radius: 2px
+}
+
+.alertify .dialog [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):hover, .alertify .dialog [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):active, .alertify .alert [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):hover, .alertify .alert [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):active {
+    background-color: rgba(0, 0, 0, 0.05)
+}
+
+.alertify .dialog [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):focus, .alertify .alert [data-alertify-btn-holder] [data-alertify-btn]:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):focus {
+    border: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.alertify .dialog [data-alertify-btn-holder] [data-alertify-btn].btn, .alertify .alert [data-alertify-btn-holder] [data-alertify-btn].btn {
+    margin: 6px 4px
+}
+
+.alertify-logs {
+    position: fixed;
+    z-index: 100000
+}
+
+.alertify-logs.bottom, .alertify-logs:not(.top) {
+    bottom: 16px
+}
+
+.alertify-logs.left, .alertify-logs:not(.right) {
+    left: 16px
+}
+
+.alertify-logs.left > *, .alertify-logs:not(.right) > * {
+    float: left;
+    transform: translate3d(0, 0, 0);
+    height: auto
+}
+
+.alertify-logs.left > *.show, .alertify-logs:not(.right) > *.show {
+    left: 0
+}
+
+.alertify-logs.left > *, .alertify-logs.left > *.hide, .alertify-logs:not(.right) > *, .alertify-logs:not(.right) > *.hide {
+    left: -110%
+}
+
+.alertify-logs.right {
+    right: 16px
+}
+
+.alertify-logs.right > * {
+    float: right;
+    transform: translate3d(0, 0, 0)
+}
+
+.alertify-logs.right > *.show {
+    right: 0;
+    opacity: 1
+}
+
+.alertify-logs.right > *, .alertify-logs.right > *.hide {
+    right: -110%;
+    opacity: 0
+}
+
+.alertify-logs.top {
+    top: 0
+}
+
+.alertify-logs > * {
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    clear: both;
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+
+.alertify-logs > * {
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none
+}
+
+.alertify-logs > *.show {
+    margin-top: 12px;
+    opacity: 1;
+    max-height: 1000px;
+    pointer-events: auto
+}
+
+.alertify-logs [data-alertify-log-msg] {
+    padding: 12px 24px;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+    transition: .2s all;
+    display: block !important
+}
+
+.alertify-logs [data-alertify-log-msg], .alertify-logs [data-alertify-log-msg].default {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8)
+}
+
+.alertify-logs [data-alertify-log-msg].success {
+    color: #fff;
+    background: rgba(76, 175, 80, 0.9)
+}
+
+.alertify-logs [data-alertify-log-msg].warning {
+    color: #fff;
+    background: rgba(255, 125, 25, 0.9)
+}
+
+.alertify-logs [data-alertify-log-msg].error {
+    color: #fff;
+    background: rgba(244, 67, 54, 0.9)
+}
+

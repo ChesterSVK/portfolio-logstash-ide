@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>Neck_Web_Application</artifactId>
+        <groupId>cz.muni.ics</groupId>
+        <version>3.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+
+    <artifactId>logstash</artifactId>
+    <properties>
+        <logstash.binary.path>D:/Projects/ICS/Bachelor Thesis/Neck-Web-Application/logstash/instance/bin/logstash.bat
+        </logstash.binary.path>
+        <logstash.config.test.command>--config.test_and_exit</logstash.config.test.command>
+        <default.output.host>http://localhost:9200/</default.output.host>
+
+        <spring.profiles.active>default</spring.profiles.active>
+        <module.logging.level>INFO</module.logging.level>
+        <spring.logging.level>INFO</spring.logging.level>
+        <root.logging.level>INFO</root.logging.level>
+        <startup.initialization>false</startup.initialization>
+
+    </properties>
+    <dependencies>
+
+        <!-- .......................................................................................................... General -->
+
+        <!-- ............................................................................................... Project -->
+        <dependency>
+            <groupId>cz.muni.ics</groupId>
+            <artifactId>core</artifactId>
+            <version>3.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- ............................................................................................... Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.github.spullara.mustache.java</groupId>-->
+            <!--<artifactId>compiler</artifactId>-->
+            <!--<version>0.9.5</version>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+        <!---->
+        <!-- ............................................................................................... Commons -->
+
+        <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-exec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+
+
+        <!-- ................................................................................................ Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <!-- .......................................................................................................... Annotations -->
+
+        <!-- ................................................................................................ Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+
+        <!-- ........................................................................................................... Validation -->
+
+        <!-- ......................................................................................... Hibernate -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+
+        <!-- .......................................................................................................... Testing -->
+
+        <!-- ................................................................................................ Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ............................................................................................... AssertJ -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ................................................................................................. Zohak -->
+        <dependency>
+            <groupId>com.googlecode.zohhak</groupId>
+            <artifactId>zohhak</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ................................................................................................. JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- ............................................................................................... Commons -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <!--..................................................................Add remove logs step to clean phase-->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/logs</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

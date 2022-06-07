@@ -1,0 +1,10 @@
+{
+  "language": {
+    "default": "en",
+    "available": ["cs", "en"]
+  },
+  "api": {
+    "lang": "java",
+    "connectorUrl": "/history/api"
+  }
+}

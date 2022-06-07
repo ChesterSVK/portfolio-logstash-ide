@@ -1,0 +1,137 @@
+<div id="importSummary">
+    <div class="discontinue-button-holder">
+        <div class="button-group align-self-center">
+            <a href="/import/transform" id="discontinueBtn" class="btn btn-info control-btn">
+                <span id="discontinueBtnText">
+                </span>
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="continue-button-holder">
+        <div class="button-group align-self-center">
+            <button type="submit" form="summaryForm" id="continueBtn" class="btn btn-info control-btn">
+                <span class="d-flex h-100">
+                    <span class="align-self-center">
+                        <span class="logo-holder text-center">
+                            <img id="ESLogo" src="/static/img/summary/elastic-elasticsearch-logo-png-transparent.png"
+                                 alt="ES logo">
+                        </span>
+                        <span class="pt-5 pb-5">
+                            <i class="fas fa-upload d-block m-auto mb-3"></i>
+                            <span id="continueBtnText">
+                            </span>
+                        </span>
+                    </span>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container summary-container pt-5">
+        <div class="row pt-5 pb-5">
+            <div class="col">
+                <form id="summaryForm" action="/import/upload-to-es" method="post">
+                    <div id="summaryAccordion">
+                        <div class="card">
+                            <div class="card-header p-4">
+                                <div class="float-left p-1">
+                                    <label id="saveFunctionsLabel" class="m-0" for="saveConfig">Save</label>:
+                                    <input id="saveConfig" type="checkbox" name="save"/>
+                                </div>
+                                <div class="float-right w-50">
+                                    <label id="noteLabel" class="m-0" for="noteInput">Note</label>:
+                                    <input id="noteInput" class="w-75 ml-3" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <a id="aboutTitle" class="btn btn-link collapsed" data-toggle="collapse"
+                                       data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span id="filesPickedText">
+                                        Files Picked
+                                    </span>
+                                        <span id="filesPickedNumber" class="badge badge-info badge-pill">
+                                        Number
+                                    </span>
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+                                <div class="card-body">
+                                    <ul id="pickFilesList" class="list-group">
+                                        <li class="item-path list-group-item"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <a class="btn btn-link collapsed" data-toggle="collapse"
+                                       data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <span id="convertTypeText">
+                                        Convert Type
+                                    </span>
+                                        <span id="convertTypeType" class="badge badge-info badge-pill">
+                                        Type
+                                    </span>
+                                    </a>
+                                    <input id="typeInput" type="hidden" value=""/>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0 p-0">
+                                    <a class="btn btn-link collapsed" data-toggle="collapse"
+                                       data-target="#collapseThree" aria-expanded="false"
+                                       aria-controls="collapseThree">
+                                    <span id="logstashTransformationsText">
+                                        Logstash Transformations
+                                    </span>
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+                                <div class="card-body p-0 textarea-holder">
+                                    <textarea id="functionsJson" class="w-100 h-100 p-5" disabled="disabled"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header row m-0" id="headingFour">
+                                <h5 class="mb-0 p-0 col-8">
+                                    <a class="btn btn-link collapsed" data-toggle="collapse"
+                                       data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <span id="watchFoldersText">
+                                        Watch Folders
+                                    </span>
+                                        <span id="watchFoldersNumber" class="badge badge-info badge-pill">
+                                    </span>
+                                    </a>
+                                </h5>
+                                <div class="logstashTransformationCheckbox col-4 checkbox-holder">
+                                    <input id="watchFoldersCheck" type="checkbox" name="watch"/>
+                                    <label id="watchFoldersCheckLabel" for="watchFoldersCheck">Execute</label>
+                                </div>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
+                                <div class="card-body">
+                                    <ul id="watchFilesList" class="list-group">
+                                        <li class="item-path list-group-item"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

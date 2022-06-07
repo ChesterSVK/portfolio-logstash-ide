@@ -1,0 +1,27 @@
+<thlogic>
+
+    <attr sel="#importStart"
+          th:fragment="importStartFragment"/>
+    <attr sel="#importStartBtn"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).PICK_FILES_LINK}__}"
+          th:text="#{page.import.start}"/>
+
+    <attr sel="#importHeading"
+          th:text="#{page.import.files}"/>
+
+    <attr sel="#spanImport"
+          th:text="#{page.import.pick}"/>
+
+    <attr sel="#spanConfigure"
+          th:text="#{page.import.convert}"/>
+    <attr sel="#spanTransform"
+          th:text="#{page.import.transform}"/>
+    <attr sel="#spanSummary"
+          th:text="#{page.import.summary}"/>
+
+    <attr sel="#importHeading1"
+          th:text="#{page.import.start.heading.1}"/>
+    <attr sel="#importHeading2"
+          th:text="#{page.import.start.heading.2}"/>
+
+</thlogic>

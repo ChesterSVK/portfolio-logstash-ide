@@ -1,0 +1,136 @@
+<div id="importConverter" class="fc-container">
+    <div class="fc-loading-wrap" data-bind="visible: loadingView()"></div>
+
+    <div class="discontinue-button-holder">
+        <div class="button-group align-self-center">
+            <a href="/import/pick" id="discontinueBtn" class="btn btn-info control-btn">
+                <span data-bind="text: $root.lg.back">
+                </span>
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row h-100">
+        <div class="col">
+            <div class="fc-wrapper">
+                <div class="fc-holder">
+                    <h4 class="text-center bg-info text-light p-2 m-0">
+                        <span data-bind="text: $root.lg.processed_paths"></span>
+                        <span id="tableItemReload" class="float-right p-1 small"
+                              data-bind="click: tableModel.reloadOriginalPaths"><span
+                                data-bind="attr: {title: $root.lg.reload_original_paths}"><i
+                                class="fas fa-sync-alt"></i></span></span>
+                    </h4>
+                    <div class="fc-file-list view-items">
+                        <div class="ui-selectable gridStyle" data-bind="koGrid: itemsModel.gridOptions"
+                            oncontextmenu="return false;">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex flex-column fc-wrapper">
+                <div class="flex-grow-1 flex-fill fc-holder">
+                    <h4 class="text-center bg-info text-light p-2 m-0" data-bind="text: $root.lg.previous_configs">
+                    </h4>
+                    <div class="fc-config-history view-items">
+                        <table id="historyTable" class="list" data-bind="with: historyTableModel">
+                            <thead>
+                            <tr class="rowHeader">
+                                <th id="historyTableItemName" class="narrow-th"><span
+                                        data-bind="attr: {title: $root.lg.order}">
+                                    <i class="fas fa-list-ol"></i>
+                                </span></th>
+                                <th><span
+                                        data-bind="attr: {title: $root.lg.date}">
+                                    <i class="far fa-calendar"></i>
+                                </span></th>
+                                <th class="narrow-th"><span
+                                        data-bind="attr: {title: $root.lg.type}">
+                                    <i class="far fa-question-circle"></i>
+                                </span></th>
+                                <th><span
+                                        data-bind="attr: {title: $root.lg.note}">
+                                    <i class="far fa-edit"></i>
+                                </span></th>
+                                <th class="narrow-th"><span
+                                        data-bind="attr: {title: $root.lg.use}">
+                                    <i class="far fa-caret-square-right"></i>
+                                </span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- ko if: historyItems().length === 0 -->
+                            <tr>
+                                <td colspan="5" data-bind="text: $root.lg.empty_items">
+                                </td>
+                            </tr>
+                            <!-- /ko -->
+                            <!-- ko if: historyItems().length !== 0 -->
+                            <!-- ko foreach: {data: historyItems(), as: 'koItem'} -->
+                            <tr>
+                                <td data-bind="text: $index">
+                                </td>
+                                <td data-bind="text: koItem.dateCreated, attr: {title: koItem.dateCreated}">
+                                </td>
+                                <td data-bind="text: koItem.type">
+                                </td>
+                                <td data-bind="text: koItem.figureNote, attr: {title: koItem.figureNote}">
+                                </td>
+                                <td><button class="btn btn-sm btn-default"
+                                        data-bind="attr: {title: $root.lg.use}, click: $parent.useConfiguration">
+                                    <i class="far fa-caret-square-right"></i>
+                                </button></td>
+                            </tr>
+                            <!-- /ko -->
+                            <!-- /ko -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="flex-grow-1 flex-fill fc-holder">
+                    <div class="fc-config-creation" data-bind="with: configCreateModel">
+                        <h4 class="header text-center bg-info text-light p-2 m-0"
+                            data-bind="text: $root.lg.create_new_config">
+                        </h4>
+                        <div class="pt-5 pb-5 text-center creation-options">
+                            <div class="col-11">
+                                <div id="jsonSettings">
+                                    <p data-bind="text: $root.lg.no_options">
+                                    </p>
+                                </div>
+                                <div id="pcapSettings">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <span class="font-weight-bold" data-bind="text: $root.lg.dns"></span>:&nbsp;
+                                            &nbsp;<span><i class="fas fa-clipboard-list"></i>&nbsp;<i class="fas fa-arrow-right"></i>&nbsp;Filter&nbsp;<i class="fas fa-arrow-right"></i>&nbsp;DNS</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <div class="continue-button-holder">
+                                    <div class="button-group align-self-center">
+                                        <button id="continueBtn" class="btn btn-info control-btn"
+                                                data-bind="attr: {title: $root.lg.convert}, click: convert">
+                                            <i class="fas fa-arrow-right"></i>
+                                            <span data-bind="text: $root.lg.continue">
+                </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<button class="btn btn-info btn-lg"-->
+                            <!--data-bind="text: $root.lg.convert, attr: {title: $root.lg.convert}, click: convert"></button>-->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

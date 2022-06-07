@@ -1,0 +1,9 @@
+cz\muni\ics\core\CoreApp.class
+cz\muni\ics\core\config\CoreConfig.class
+cz\muni\ics\core\exceptions\ApplicationMessages.class
+cz\muni\ics\core\os\SystemCommanderComponent.class
+cz\muni\ics\core\exceptions\ApplicationException.class
+cz\muni\ics\core\dataclasses\ExecutorData.class
+cz\muni\ics\core\os\SystemCommandExecutor.class
+cz\muni\ics\core\exceptions\CoreValidationException.class
+cz\muni\ics\core\validators\ExecutorDataValidator.class

@@ -1,0 +1,6 @@
+cz\muni\ics\filesystem\FileUtilitiesTest.class
+com\fabriceci\StubServletOutputStream.class
+com\fabriceci\fmc\AbstractFileManagerTest.class
+cz\muni\ics\filesystem\FolderUtilitiesTest.class
+cz\muni\ics\filesystem\FileManagerTestPreparator.class
+com\fabriceci\fmc\impl\LocalFileManagerTest.class

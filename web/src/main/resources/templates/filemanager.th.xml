@@ -1,0 +1,21 @@
+<thlogic>
+    <!--CSS-->
+    <attr sel="#filemanagerCss"
+          th:href="@{/plug-in/filemanager/src/css/filemanager.css}"/>
+    <attr sel="#filemanagerLibsMainCss"
+          th:href="@{/libs/libs-main/src/css/libs-main.css}"/>
+
+
+    <!--JS-->
+    <attr sel="#filemanagerLibsMainJs"
+          th:src="@{/libs/libs-main/src/js/libs-main.js}"/>
+    <attr sel="#filemanagerJs"
+          th:src="@{/plug-in/filemanager/src/js/filemanager.js}"/>
+    <attr sel="#filemanagerInitJs"
+          th:src="@{/plug-in/filemanager/config/filemanager.init.js}"/>
+
+
+    <!--Variables-->
+    <attr sel="#titleHeader"
+          th:text="#{page.filemanager}"/>
+</thlogic>

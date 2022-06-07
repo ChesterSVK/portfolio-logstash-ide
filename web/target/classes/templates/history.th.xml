@@ -1,0 +1,23 @@
+<thlogic>
+    <!--Variables-->
+
+    <!--CSS-->
+    <attr sel="#historyCss"
+          th:href="@{/plug-in/history/src/css/history.css}"/>
+    <attr sel="#historyLibsMainCss"
+          th:href="@{/plug-in/history/src/css/libs-main.css}"/>
+
+
+    <!--JS-->
+    <attr sel="#historyLibsMainJs"
+          th:src="@{/libs/libs-main/src/js/libs-main.js}"/>
+    <attr sel="#historyJs"
+          th:src="@{/plug-in/history/src/js/history.js}"/>
+    <attr sel="#historyInitJs"
+          th:src="@{/plug-in/history/config/history.init.js}"/>
+
+
+    <!--Variables-->
+    <attr sel="#titleHeader"
+          th:text="#{page.history}"/>
+</thlogic>

@@ -1,0 +1,28 @@
+{
+  "data":[
+    {
+      "id":"/EmptyFolder/",
+      "type":"folder",
+      "attributes":{
+        "name":"EmptyFolder",
+        "path":"userfiles/EmptyFolder/",
+        "readable":1,
+        "writable":1,
+        "created":1515481655,
+        "modified":1515481655
+      }
+    },
+    {
+      "id":"/Folder1/",
+      "type":"folder",
+      "attributes":{
+        "name":"Folder1",
+        "path":"userfiles/Folder1/",
+        "readable":1,
+        "writable":1,
+        "created":1515481655,
+        "modified":1515481655
+      }
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <title id="titleHeader">Import</title>
+
+    <!--Filemanager-->
+    <link id="filemanagerLibsMainCss" rel="stylesheet" type="text/css"/>
+    <link id="filemanagerCss" rel="stylesheet" type="text/css"/>
+    <!--FileImport-->
+    <link id="fileImportCss" rel="stylesheet" type="text/css"/>
+    <!--FileConvert-->
+    <link id="fileConvertCss" rel="stylesheet" type="text/css"/>
+    <!--FileTransform-->
+    <link id="fileTransformCss" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="importFragmentContent" class="fragment-content" layout:fragment="pageContent"
+     style="display: flex;flex-direction: column;">
+    <nav id="appNavBreadcrumbs"></nav>
+    <div id="importContainer" class="container-fluid">
+
+        <div id="importIntroParent">
+            <div id="importStart">
+            </div>
+        </div>
+
+        <div id="importFilePickerParent">
+            <div class="row">
+                <div class="col-sm-6 import-column">
+                    <div id="importFileManagerSimple"></div>
+                </div>
+                <div class="col-sm-6 import-column">
+                    <div id="fileImport"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="importConvertParent">
+            <div class="row">
+                <div class="col import-column">
+                    <div id="importConverter">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="importTransformParent">
+            <div class="row">
+                <div class="col import-column">
+                    <div id="importTransformer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="importSummaryParent">
+            <div class="row">
+                <div class="col import-column">
+                    <div id="importSummary">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<footer>
+
+    <th:block layout:fragment="dynamicScripts">
+
+        <!-- drag&drop + selectable build (includes customizations for RichFilemanager) -->
+        <script type="text/javascript" src="/libs/jquery-ui/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/libs/jquery-browser.js"></script>
+        <script type="text/javascript" src="/libs/jquery-mousewheel/jquery.mousewheel.min.js"></script>
+        <script type="text/javascript" src="/libs/jquery.splitter/dist/jquery-splitter.js"></script>
+        <script type="text/javascript" src="/libs/jquery.contextmenu/dist/jquery.contextMenu.min.js"></script>
+        <script type="text/javascript" src="/libs/alertify.js/dist/js/alertify.js"></script>
+        <script type="text/javascript" src="/libs/clipboard.js/dist/clipboard.min.js"></script>
+        <script type="text/javascript" src="/libs/jquery.fileDownload/jquery.fileDownload.min.js"></script>
+        <script type="text/javascript" src="/libs/javascript-templates/js/tmpl.min.js"></script>
+        <script type="text/javascript" src="/libs/toast/lib/toast.min.js"></script>
+        <script type="text/javascript" src="/libs/cldrjs/cldr.js"></script>
+        <script type="text/javascript" src="/libs/cldrjs/cldr/event.js"></script>
+        <script type="text/javascript" src="/libs/cldrjs/cldr/supplemental.js"></script>
+        <script type="text/javascript" src="/libs/globalizejs/globalize.js"></script>
+        <script type="text/javascript" src="/libs/globalizejs/globalize/number.js"></script>
+        <script type="text/javascript" src="/libs/globalizejs/globalize/date.js"></script>
+        <script type="text/javascript" src="/libs/purl/purl.min.js"></script>
+
+        <!--Filemanager-->
+        <script id="filemanagerLibsMainJs" type="text/javascript"></script>
+        <script id="filemanagerJs" type="text/javascript"></script>
+        <script id="filemanagerInitJs" type="text/javascript"></script>
+
+        <!--FileImport-->
+        <script id="fileImportJs" type="text/javascript"></script>
+        <script id="fileImportInitJs" type="text/javascript"></script>
+        <!--FileConvert-->
+        <script id="fileConvertJs" type="text/javascript"></script>
+        <script id="fileConvertInitJs"></script>
+        <!--FileTransform-->
+        <script id="fileTransformJs" type="text/javascript"></script>
+        <script id="fileTransformInitJs"></script>
+    </th:block>
+</footer>
+</html>

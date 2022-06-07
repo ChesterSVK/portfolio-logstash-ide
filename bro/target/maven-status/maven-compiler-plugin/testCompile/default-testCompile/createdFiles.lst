@@ -1,0 +1,6 @@
+cz\muni\ics\bro\BroAppTest.class
+cz\muni\ics\bro\impl\PcapProcessingTest.class
+cz\muni\ics\bro\exceptions\BroExceptionTest.class
+cz\muni\ics\bro\utils\BroExecutorTest.class
+cz\muni\ics\bro\TemporaryTest.class
+cz\muni\ics\bro\utils\BroConfigCreatorTest.class

@@ -1,0 +1,34 @@
+{
+  "data":[
+    {
+      "id":"/Folder1/sample.jpg",
+      "type":"file",
+      "attributes":{
+        "name":"sample.jpg",
+        "path":"userfiles/Folder1/sample.jpg",
+        "readable":1,
+        "writable":1,
+        "created":1515481655,
+        "modified":1515481655,
+        "height":162,
+        "width":200,
+        "size": 6082
+      }
+    },
+    {
+      "id":"/Folder1/sample.txt",
+      "type":"file",
+      "attributes":{
+        "name":"sample.txt",
+        "path":"userfiles/Folder1/sample.txt",
+        "readable":1,
+        "writable":1,
+        "created":1515481655,
+        "modified":1515481655,
+        "height":0,
+        "width":0,
+        "size": 242
+      }
+    }
+  ]
+}

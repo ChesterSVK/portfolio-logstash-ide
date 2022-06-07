@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <title id="titleHeader">Admin Login</title>
+</head>
+<body>
+<div layout:fragment="pageContent">
+    <div sec:authorize="!isAuthenticated()">
+        <div id="appLogin"></div>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <div id="appLoggedIn"></div>
+    </div>
+</div>
+</body>
+<footer>
+</footer>
+</html>

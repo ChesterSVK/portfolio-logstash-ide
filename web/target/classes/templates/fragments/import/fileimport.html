@@ -1,0 +1,108 @@
+<div id="fileImport" class="fi-container">
+    <div class="fi-loading-wrap" data-bind="visible: loadingView()"></div>
+    <div class="continue-button-holder" data-bind="with: controlPanel">
+        <div class="button-group align-self-center" data-bind="visible: showContinue()">
+            <button id="continueBtn" class="btn btn-info control-btn"
+                    data-bind="click: processImport">
+                <i class="fas fa-arrow-right"></i>
+                <span data-bind="text: $root.lg.continue">
+                </span>
+            </button>
+        </div>
+    </div>
+    <!-- ko with: modalModel -->
+    <div id="modalHolder" class="modal" tabindex="-1" role="dialog">
+        <div class="d-flex h-100">
+            <div class="modal-dialog align-self-center" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" data-bind="text: $root.lg.choose_type"></h5>
+                        <button type="button" class="close" data-bind="click: closeModal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div data-bind="foreach: formButtons" class="text-center">
+                            <button class="btn btn-info" name="type"
+                                    data-bind="text: $data.type, value: $data.type, click: $parent.submitForm"></button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-bind="text: $root.lg.dismiss, click: closeModal"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <div class="row">
+        <div class="col-sm-3 fi-column controls-column">
+            <div id="importControls" data-bind="with: controlPanel">
+                <div class="fi-wrapper">
+                    <div class="button-group">
+                        <button class="btn btn-info"
+                                data-bind="click: importItems, text: $root.lg.import, attr: {title: $root.lg.import_files}"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 fi-column">
+            <div id="importPicker">
+                <div class="fi-wrapper">
+                    <div class="fi-holder">
+                        <div class="fi-file-list view-items">
+                            <table class="list">
+                                <thead>
+                                <tr class="rowHeader" data-bind="with: tableModel">
+                                    <th id="tableItemType"><span
+                                            data-bind="attr: {title: $root.lg.type_detail}">
+                                        <i class="fas fa-folder"></i>
+                                    </span></th>
+                                    <th id="tableItemName"
+                                        data-bind="click: thName.sort, css: thName.sortClass()"><span
+                                            data-bind="attr: {title: $root.lg.name}, text: $root.lg.name"></span>
+                                    </th>
+                                    <th id="tableItemWatch" data-bind=""><span
+                                            data-bind="attr: {title: $root.lg.watch_detail}, text: $root.lg.watch"></span>
+                                    </th>
+                                    <th id="tableItemDeleteAll" data-bind="click: thDelete.delete"><span
+                                            data-bind="attr: {title: $root.lg.delete}"><i
+                                            class="fas fa-window-close"></i></span></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                <!-- ko foreach: {data: itemsModel.objects, as: 'koItem'} -->
+                                <tr data-bind="css: koItem.itemClass()"
+                                    oncontextmenu="return false;">
+                                    <td class="button" data-bind="css: koItem.cdo.type, click: koItem.open"></td>
+                                    <td data-bind="text: koItem.itemText, attr: { title: koItem.rdo.attributes.path }"></td>
+                                    <td class="watch-td" data-bind="css: koItem.cdo.watchFolder() ? 'active' : ''">
+                                        <button class="btn"
+                                                data-bind="visible: koItem.cdo.isFolder, css: koItem.cdo.isFolder ? '' : 'disabled',  event: {click: koItem.watch}, attr: {title: !koItem.cdo.watchFolder() ? $root.lg.watch : $root.lg.stop_watch }">
+                                            <span data-bind="visible: !koItem.cdo.watchFolder()">
+                                                <i class="fas fa-eye-slash"></i>
+                                            </span>
+                                            <span data-bind="visible: koItem.cdo.watchFolder()">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                    <td data-bind="">
+                                        <button class="btn" data-bind="event: {click: koItem.remove}">
+                                            <i class="fas fa-window-close"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

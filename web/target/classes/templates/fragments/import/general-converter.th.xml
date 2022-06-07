@@ -1,0 +1,15 @@
+<thlogic>
+    <attr sel="#importConverter"
+          th:fragment="general-converter"/>
+
+    <attr sel="#discontinueBtn"
+          th:href="@{__${T(cz.muni.ics.web.utils.ViewLinks).IMPORT}____${T(cz.muni.ics.web.utils.ViewLinks).PICK_FILES_LINK}__}"/>
+
+    <attr sel="#footerBuildVersionValue"
+          th:if="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getAppBuildVersion().isEmpty() == false}"
+          th:text="${T(cz.muni.ics.web.utils.thymleaf.GlobalPageVariables).getAppBuildVersion()}"/>
+    <attr sel="#jsonSettings"
+          th:if="${jsonSettings}"/>
+    <attr sel="#pcapSettings"
+          th:if="${pcapSettings}"/>
+</thlogic>

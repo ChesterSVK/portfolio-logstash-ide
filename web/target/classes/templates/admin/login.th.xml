@@ -1,0 +1,10 @@
+<thlogic>
+    <attr sel="#titleHeader"
+          th:text="#{page.admin.login}"/>
+
+    <attr sel="#appLogin"
+          th:replace="~{fragments/login :: loginFragment}"/>
+
+    <attr sel="#appLoggedIn"
+          th:replace="~{fragments/loggedin :: loggedInFragment}"/>
+</thlogic>
